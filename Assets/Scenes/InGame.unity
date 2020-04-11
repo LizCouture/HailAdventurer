@@ -121,77 +121,6 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
---- !u!1 &156419481 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5616603177734001419, guid: 4259791231a75584b92ad773e22a426e,
-    type: 3}
-  m_PrefabInstance: {fileID: 5616603177856571026}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &156419482 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5616603177734001416, guid: 4259791231a75584b92ad773e22a426e,
-    type: 3}
-  m_PrefabInstance: {fileID: 5616603177856571026}
-  m_PrefabAsset: {fileID: 0}
---- !u!65 &156419483
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 156419481}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1.9888184, y: 2.9929674, z: 0.01}
-  m_Center: {x: -0.0038327873, y: 0.00000011920929, z: 0}
---- !u!114 &156419484
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 156419481}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 332d4c7ade0b0d8478dff2199427c3ad, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardFront: {fileID: 5616603177856571028}
-  CardBack: {fileID: 5616603177856571027}
-  targetFacePoint: {fileID: 967634233}
-  col: {fileID: 156419483}
---- !u!1 &967634232
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 967634233}
-  m_Layer: 0
-  m_Name: FacePoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &967634233
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 967634232}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: -0.02}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 156419482}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1384395438
 GameObject:
   m_ObjectHideFlags: 0
@@ -348,6 +277,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 990394465277617054, guid: 4259791231a75584b92ad773e22a426e,
+        type: 3}
+      propertyPath: m_PreserveAspect
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2326611980102785752, guid: 4259791231a75584b92ad773e22a426e,
         type: 3}
       propertyPath: m_IsActive
@@ -413,6 +347,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: ItemCard
       objectReference: {fileID: 0}
+    - target: {fileID: 5616603177734001419, guid: 4259791231a75584b92ad773e22a426e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5616603178893385467, guid: 4259791231a75584b92ad773e22a426e,
         type: 3}
       propertyPath: m_Camera
@@ -423,17 +362,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8799381615457196717, guid: 4259791231a75584b92ad773e22a426e,
+        type: 3}
+      propertyPath: cardAsset
+      value: 
+      objectReference: {fileID: 11400000, guid: 4b1883bd1ee462245995a664d3a127c0,
+        type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4259791231a75584b92ad773e22a426e, type: 3}
---- !u!224 &5616603177856571027 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 5443521619956065144, guid: 4259791231a75584b92ad773e22a426e,
-    type: 3}
-  m_PrefabInstance: {fileID: 5616603177856571026}
-  m_PrefabAsset: {fileID: 0}
---- !u!224 &5616603177856571028 stripped
-RectTransform:
-  m_CorrespondingSourceObject: {fileID: 1400813539823796915, guid: 4259791231a75584b92ad773e22a426e,
-    type: 3}
-  m_PrefabInstance: {fileID: 5616603177856571026}
-  m_PrefabAsset: {fileID: 0}

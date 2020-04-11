@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Shoulder Pad
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: 7d56e4cdb2e36bc42b0c9d02c87b1e34, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

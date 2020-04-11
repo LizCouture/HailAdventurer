@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Leaves and Berries
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: 7df04388932f6114ab01c9e1d02684ec, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

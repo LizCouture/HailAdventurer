@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Spikey Crown
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: d3ee8c1ef10ec4140b6a20fd6931e723, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

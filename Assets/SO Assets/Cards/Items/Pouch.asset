@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Pouch
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: 8e5e49a89a1c4b44bb2937c96fd3a863, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

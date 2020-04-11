@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Catapult
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: 42bd149c40de6064690e008e171124a4, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

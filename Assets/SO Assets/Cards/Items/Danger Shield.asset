@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Danger Shield
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: 8851c706a257fea46a8eb10de0830869, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Scarecrow
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: ead83670c65aa4048a9a3f5b8adaefd6, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

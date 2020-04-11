@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Paints
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: 9c038d562f2693243976bd360c86718c, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

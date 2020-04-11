@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: White Pennant
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: e34dc4a05e65c5e49af07559d6a9962b, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

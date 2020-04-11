@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Knight Shield
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: 7fee1be628c87a24198581cf2f0b7757, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

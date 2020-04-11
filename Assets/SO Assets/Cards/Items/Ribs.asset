@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Ribs
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: d7fe235de155af04d888968ba0833c9a, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

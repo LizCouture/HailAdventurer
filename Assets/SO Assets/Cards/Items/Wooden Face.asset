@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Wooden Face
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: a0f4478ef92e1254e908716ce189d179, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

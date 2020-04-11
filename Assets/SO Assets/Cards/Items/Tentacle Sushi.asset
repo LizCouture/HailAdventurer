@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Tentacle Sushi
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: -230194567796169486, guid: aae86c6884eaa314493091b48aaae873,
+    type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

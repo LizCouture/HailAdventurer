@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Bat Eye Staff
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: bc6747d7238a1f34e94f7cdf916fc282, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

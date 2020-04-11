@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: White Horse
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: 4089335df7d9c0a4dae36cad70991aae, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

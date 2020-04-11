@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Blue Necklace
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: 9530383e33502a94fa4ce80b08570668, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

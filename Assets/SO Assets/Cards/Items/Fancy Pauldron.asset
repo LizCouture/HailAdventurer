@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Fancy Pauldron
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: f03fadc138b4c1647bf6ab5fadf5ed50, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

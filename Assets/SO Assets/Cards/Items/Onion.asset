@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Onion
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: 08d4e8d3c4352134dbb316efee026041, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

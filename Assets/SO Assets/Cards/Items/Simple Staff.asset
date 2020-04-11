@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Simple Staff
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: fd43b7f53868cc441924110df96ee0c8, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

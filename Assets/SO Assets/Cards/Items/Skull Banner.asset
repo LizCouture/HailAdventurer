@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Skull Banner
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: aec8928f4e92e2649ae5f7ee3fc47b8e, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

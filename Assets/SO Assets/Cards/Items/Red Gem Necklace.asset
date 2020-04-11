@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Red Gem Necklace
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: b9e6be258235d1d42aac5983ac098789, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

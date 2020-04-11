@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Simple Chalice
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: 7ad4a9172ca404747b1532200d7945dd, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

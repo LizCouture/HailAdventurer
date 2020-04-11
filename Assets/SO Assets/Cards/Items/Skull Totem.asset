@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Skull Totem
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: 242a965727c146b47bedbc0dffdba783, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

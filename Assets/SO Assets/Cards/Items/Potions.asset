@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Potions
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: e3169617c165e84458b6ac78ef17d2fc, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Hammer and Nail
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: f14e7f0cf3565aa4392a2b880d6ce18f, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

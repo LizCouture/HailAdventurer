@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Purple Crystal
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: 88e27bfd5bbc54341bf54a40089640b5, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

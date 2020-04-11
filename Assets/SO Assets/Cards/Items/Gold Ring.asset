@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Gold Ring
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: fcda89ddb7c0b0b4f80cf3dd147ab2f6, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

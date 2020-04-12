@@ -604,8 +604,11 @@ GameObject:
   - component: {fileID: 7037322230955462070}
   - component: {fileID: 1996284022555169408}
   - component: {fileID: 271488193}
+  - component: {fileID: 528811088}
+  - component: {fileID: 528811087}
+  - component: {fileID: 6348717978423851786}
   m_Layer: 0
-  m_Name: CharacterCard
+  m_Name: AdventurerCard
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -691,10 +694,46 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   TurnThisOffWhenPreviewing: {fileID: 3196352448412790587}
-  TargetPosition: {x: 0, y: 2.5, z: -1}
+  TargetPosition: {x: 0, y: -2.5, z: -1}
   TargetScale: 2.5
   previewGameObject: {fileID: 7727380384710840680}
   ActivateInAwake: 1
+--- !u!114 &528811088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3196352447437593382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f3256abb72842a41ac366a00a9111b8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &528811087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3196352447437593382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77cf1331581c392479388a21a956d322, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6348717978423851786
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3196352447437593382}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3a971d0a202906448eaf9b83489a60e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3196352448286987994
 GameObject:
   m_ObjectHideFlags: 0

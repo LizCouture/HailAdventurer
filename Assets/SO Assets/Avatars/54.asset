@@ -9,11 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 41e206fc57f453a42b932de9e94caabf, type: 3}
-  m_Name: Beer
+  m_Script: {fileID: 11500000, guid: 917561878a8602640ab159ede231f37f, type: 3}
+  m_Name: 54
   m_EditorClassIdentifier: 
-  Description: Essential tavern liquid.
-  CardImage: {fileID: 7795085465242543974, guid: 88825bd5eb634eb4cbcb9f1de34259c7,
-    type: 3}
-  ItemScriptName: 
-  AdventurerScriptName: 
+  AvatarImage: {fileID: 0}
+  PlayerTextTint:
+    serializedVersion: 2
+    rgba: 0

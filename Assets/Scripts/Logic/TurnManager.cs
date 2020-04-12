@@ -7,7 +7,7 @@ using DG.Tweening;
 public class TurnManager : MonoBehaviour {
 
     // PUBLIC FIELDS
-    public CardAsset CoinCard;
+    //public CardAsset CoinCard;
 
     // for Singleton Pattern
     public static TurnManager Instance;
@@ -56,7 +56,7 @@ public class TurnManager : MonoBehaviour {
 
     void Start()
     {
-        OnGameStart();
+        //TODO: OnGameStart();
     }
 
     public void OnGameStart()
@@ -103,7 +103,7 @@ public class TurnManager : MonoBehaviour {
                 // add one more card to second player`s hand
                 whoGoesSecond.DrawACard(true);
                 //new GivePlayerACoinCommand(null, whoGoesSecond).AddToQueue();
-                whoGoesSecond.GetACardNotFromDeck(CoinCard);
+                //whoGoesSecond.GetACardNotFromDeck(CoinCard);
                 new StartATurnCommand(whoGoesFirst).AddToQueue();
             });
     }

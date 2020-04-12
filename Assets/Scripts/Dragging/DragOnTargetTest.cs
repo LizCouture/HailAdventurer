@@ -12,16 +12,16 @@ public class DragOnTargetTest : DraggingActionsTest
 
     void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
+        //sr = GetComponent<SpriteRenderer>();
         lr = GetComponentInChildren<LineRenderer>();
-        lr.sortingLayerName = "AboveEverything";
+        lr.sortingLayerName = "Above Everything";
         triangle = transform.Find("Triangle");
         triangleSR = triangle.GetComponent<SpriteRenderer>();
     }
 
     public override void OnStartDrag()
     {
-        sr.enabled = true;
+       // sr.enabled = true;
         lr.enabled = true;
     }
 
@@ -39,7 +39,7 @@ public class DragOnTargetTest : DraggingActionsTest
 
             // position the end of the arrow between near the target.
             triangleSR.enabled = true;
-            triangleSR.transform.position = transform.position - 1.5f*direction;
+            triangleSR.transform.position = transform.position - 1f*direction;
 
             // proper rotarion of arrow end
             float rot_z = Mathf.Atan2(notNormalized.y, notNormalized.x) * Mathf.Rad2Deg;
@@ -59,7 +59,7 @@ public class DragOnTargetTest : DraggingActionsTest
         // return target and arrow to original position
         // this position is special for spell cards to show the arrow on top
         transform.localPosition = new Vector3(0f, 0f, 0.1f);
-        sr.enabled = false;
+       // sr.enabled = false;
         lr.enabled = false;
         triangleSR.enabled = false;
 

@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 917561878a8602640ab159ede231f37f, type: 3}
   m_Name: 26
   m_EditorClassIdentifier: 
-  AvatarImage: {fileID: 0}
+  AvatarImage: {fileID: 21300000, guid: 49bf59a90be4ca24b958f3c388f284c9, type: 3}
   PlayerTextTint:
     serializedVersion: 2
-    rgba: 0
+    rgba: 4284917400

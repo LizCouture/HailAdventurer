@@ -16,7 +16,7 @@ public class TableVisual : MonoBehaviour
     // PRIVATE FIELDS
 
     // list of all the creature cards on the table as GameObjects
-    //private List<GameObject> CreaturesOnTable = new List<GameObject>();
+    private List<GameObject> CardsOnTable = new List<GameObject>();
 
     // are we hovering over this table`s collider with a mouse
     private bool cursorOverThisTable = false;
@@ -70,28 +70,28 @@ public class TableVisual : MonoBehaviour
     }
    
     // method to create a new creature and add it to the table
-    /*public void AddCreatureAtIndex(CardAsset ca, int UniqueID ,int index)
+    public void AddCardAtIndex(CardAsset ca, int UniqueID ,int index)
     {
         // create a new creature from prefab
-        GameObject creature = GameObject.Instantiate(GlobalSettings.Instance.CreaturePrefab, slots.Children[index].transform.position, Quaternion.identity) as GameObject;
+        GameObject itemCard = GameObject.Instantiate(GlobalSettings.Instance.ItemCardPrefab, slots.Children[index].transform.position, Quaternion.identity) as GameObject;
 
         // apply the look from CardAsset
-        OneCreatureManager manager = creature.GetComponent<OneCreatureManager>();
+        OneCardManager manager = itemCard.GetComponent<OneCardManager>();
         manager.cardAsset = ca;
-        manager.ReadCreatureFromAsset();
+        manager.ReadCardFromAsset();
 
         // add tag according to owner
-        foreach (Transform t in creature.GetComponentsInChildren<Transform>())
-            t.tag = owner.ToString()+"Creature";
+        foreach (Transform t in itemCard.GetComponentsInChildren<Transform>())
+            t.tag = owner.ToString()+"Item";
         
         // parent a new creature gameObject to table slots
-        creature.transform.SetParent(slots.transform);
+        itemCard.transform.SetParent(slots.transform);
 
         // add a new creature to the list
-        CreaturesOnTable.Insert(index, creature);
+        CardsOnTable.Insert(index, itemCard);
 
         // let this creature know about its position
-        WhereIsTheCardOrCreature w = creature.GetComponent<WhereIsTheCardOrCreature>();
+        WhereIsTheCardOrCreature w = itemCard.GetComponent<WhereIsTheCardOrCreature>();
         w.Slot = index;
         if (owner == AreaPosition.Low)
             w.VisualState = VisualStates.LowTable;
@@ -99,12 +99,12 @@ public class TableVisual : MonoBehaviour
             w.VisualState = VisualStates.TopTable;
 
         // add our unique ID to this creature
-        IDHolder id = creature.AddComponent<IDHolder>();
+        IDHolder id = itemCard.AddComponent<IDHolder>();
         id.UniqueID = UniqueID;
 
         // after a new creature is added update placing of all the other creatures
-        ShiftSlotsGameObjectAccordingToNumberOfCreatures();
-        PlaceCreaturesOnNewSlots();
+        ShiftSlotsGameObjectAccordingToNumberOfCards();
+        PlaceCardsOnNewSlots();
 
         // end command execution
         Command.CommandExecutionComplete();
@@ -113,25 +113,25 @@ public class TableVisual : MonoBehaviour
 
     // returns an index for a new creature based on mousePosition
     // included for placing a new creature to any positon on the table
-    public int TablePosForNewCreature(float MouseX)
+    public int TablePosForNewCard(float MouseX)
     {
         // if there are no creatures or if we are pointing to the right of all creatures with a mouse.
         // right - because the table slots are flipped and 0 is on the right side.
-        if (CreaturesOnTable.Count == 0 || MouseX > slots.Children[0].transform.position.x)
+        if (CardsOnTable.Count == 0 || MouseX > slots.Children[0].transform.position.x)
             return 0;
-        else if (MouseX < slots.Children[CreaturesOnTable.Count - 1].transform.position.x) // cursor on the left relative to all creatures on the table
-            return CreaturesOnTable.Count;
-        for (int i = 0; i < CreaturesOnTable.Count; i++)
+        else if (MouseX < slots.Children[CardsOnTable.Count - 1].transform.position.x) // cursor on the left relative to all creatures on the table
+            return CardsOnTable.Count;
+        for (int i = 0; i < CardsOnTable.Count; i++)
         {
             if (MouseX < slots.Children[i].transform.position.x && MouseX > slots.Children[i + 1].transform.position.x)
                 return i + 1;
         }
-        Debug.Log("Suspicious behavior. Reached end of TablePosForNewCreature method. Returning 0");
+        Debug.Log("Suspicious behavior. Reached end of TablePosForNewCard method. Returning 0");
         return 0;
     }
 
     // Destroy a creature
-    public void RemoveCreatureWithID(int IDToRemove)
+    public void RemoveCardWithID(int IDToRemove)
     {
         // TODO: This has to last for some time
         // Adding delay here did not work because it shows one creature die, then another creature die. 
@@ -143,22 +143,22 @@ public class TableVisual : MonoBehaviour
                 
         //    });
         GameObject creatureToRemove = IDHolder.GetGameObjectWithID(IDToRemove);
-        CreaturesOnTable.Remove(creatureToRemove);
+        CardsOnTable.Remove(creatureToRemove);
         Destroy(creatureToRemove);
 
-        ShiftSlotsGameObjectAccordingToNumberOfCreatures();
-        PlaceCreaturesOnNewSlots();
+        ShiftSlotsGameObjectAccordingToNumberOfCards();
+        PlaceCardsOnNewSlots();
         Command.CommandExecutionComplete();
     }
 
     /// <summary>
     /// Shifts the slots game object according to number of creatures.
     /// </summary>
-    void ShiftSlotsGameObjectAccordingToNumberOfCreatures()
+    void ShiftSlotsGameObjectAccordingToNumberOfCards()
     {
         float posX;
-        if (CreaturesOnTable.Count > 0)
-            posX = (slots.Children[0].transform.localPosition.x - slots.Children[CreaturesOnTable.Count - 1].transform.localPosition.x) / 2f;
+        if (CardsOnTable.Count > 0)
+            posX = (slots.Children[0].transform.localPosition.x - slots.Children[CardsOnTable.Count - 1].transform.localPosition.x) / 2f;
         else
             posX = 0f;
 
@@ -169,15 +169,15 @@ public class TableVisual : MonoBehaviour
     /// After a new creature is added or an old creature dies, this method
     /// shifts all the creatures and places the creatures on new slots.
     /// </summary>
-    void PlaceCreaturesOnNewSlots()
+    void PlaceCardsOnNewSlots()
     {
-        foreach (GameObject g in CreaturesOnTable)
+        foreach (GameObject g in CardsOnTable)
         {
-            g.transform.DOLocalMoveX(slots.Children[CreaturesOnTable.IndexOf(g)].transform.localPosition.x, 0.3f);
+            g.transform.DOLocalMoveX(slots.Children[CardsOnTable.IndexOf(g)].transform.localPosition.x, 0.3f);
             // apply correct sorting order and HandSlot value for later 
             // TODO: figure out if I need to do something here:
             // g.GetComponent<WhereIsTheCardOrCreature>().SetTableSortingOrder() = CreaturesOnTable.IndexOf(g);
         }
-    }*/
+    }
 
 }

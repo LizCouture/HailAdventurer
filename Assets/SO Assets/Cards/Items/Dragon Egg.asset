@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Dragon Egg
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: fff32be5cfdf327489a95502eb4f066d, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

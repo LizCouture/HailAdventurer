@@ -26,4 +26,9 @@ public class IDHolder : MonoBehaviour {
     {
         allIDHolders.Clear();
     }
+
+    private void OnDestroy()
+    {
+        //Debug.Log("SOMEONE IS DESTROYING AN ID HOLDER: " + UniqueID);
+    }
 }

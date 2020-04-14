@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Pipe
   m_EditorClassIdentifier: 
   Description: 
-  CardImage: {fileID: 0}
+  CardImage: {fileID: 21300000, guid: 7fcc0c00ea03a47418ae6ae5bab86b53, type: 3}
   ItemScriptName: 
   AdventurerScriptName: 

@@ -54,8 +54,7 @@ public class OneCardManager : MonoBehaviour {
         DescriptionText.text = cardAsset.Description;
         // 5) Change the card graphic sprite
         CardGraphicImage.sprite = cardAsset.CardImage;
-
-       
+              
         if (PreviewManager != null)
         {
             // this is a card and not a preview

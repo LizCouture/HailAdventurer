@@ -68,5 +68,8 @@ public class CardLogic: IIdentifiable
     {
         CurrentManaCost = ca.ManaCost;
     }*/
-
+    void Destroy()
+    {
+        Debug.LogError("CARD LOGIC GOT DESTROYED.  SHOULD THIS HAPPEN???");
+    }
 }

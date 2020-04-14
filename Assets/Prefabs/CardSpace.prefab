@@ -119,9 +119,10 @@ GameObject:
   m_Component:
   - component: {fileID: 5893529747687795636}
   - component: {fileID: 2033420043304860967}
+  - component: {fileID: 5704182748169719982}
   m_Layer: 0
   m_Name: CardSpace
-  m_TagString: Untagged
+  m_TagString: EmptySpace
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -154,6 +155,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 3.232204, y: 4.552886, z: 0.01}
   m_Center: {x: -0.6248238, y: -0.08121002, z: 0}
+--- !u!114 &5704182748169719982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5893529747687795639}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 459ae5541610f4245ae2bdf3863c3001, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  table: {fileID: 0}
+  slotNum: 0
 --- !u!1 &5893529748516245934
 GameObject:
   m_ObjectHideFlags: 0
@@ -308,6 +323,7 @@ GameObject:
   m_Component:
   - component: {fileID: 5893529748739399595}
   - component: {fileID: 5893529748739399592}
+  - component: {fileID: 5315495546795898955}
   m_Layer: 5
   m_Name: CardPanel
   m_TagString: Untagged
@@ -343,3 +359,16 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5893529748739399594}
   m_CullTransparentMesh: 0
+--- !u!114 &5315495546795898955
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5893529748739399594}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d14d6cb4359fce14dab529b43432f07c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UsePointerDisplacement: 1

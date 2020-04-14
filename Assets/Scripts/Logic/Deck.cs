@@ -10,5 +10,12 @@ public class Deck : MonoBehaviour {
     {
         cards.Shuffle();
     }
+
+    public CardLogic DealCard()
+    {
+        CardLogic newCard = new CardLogic(cards[0]);
+        cards.RemoveAt(0);
+        return newCard;
+    }
 	
 }

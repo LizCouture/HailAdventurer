@@ -48,62 +48,6 @@ public class Player : MonoBehaviour, ICharacter
         }
     }
 
-    // total mana crystals that this player has this turn
-    /*private int manaThisTurn;
-    public int ManaThisTurn
-    {
-        get{ return manaThisTurn;}
-        set
-        {
-            if (value < 0)
-                manaThisTurn = 0;
-            else if (value > PArea.ManaBar.Crystals.Length)
-                manaThisTurn = PArea.ManaBar.Crystals.Length;
-            else
-                manaThisTurn = value;
-            //PArea.ManaBar.TotalCrystals = manaThisTurn;
-            new UpdateManaCrystalsCommand(this, manaThisTurn, manaLeft).AddToQueue();
-        }
-    }
-
-    // full mana crystals available right now to play cards / use hero power 
-    private int manaLeft;
-    public int ManaLeft
-    {
-        get
-        { return manaLeft;}
-        set
-        {
-            if (value < 0)
-                manaLeft = 0;
-            else if (value > PArea.ManaBar.Crystals.Length)
-                manaLeft = PArea.ManaBar.Crystals.Length;
-            else
-                manaLeft = value;
-            
-            //PArea.ManaBar.AvailableCrystals = manaLeft;
-            new UpdateManaCrystalsCommand(this, ManaThisTurn, manaLeft).AddToQueue();
-            //Debug.Log(ManaLeft);
-            if (TurnManager.Instance.whoseTurn == this)
-                HighlightPlayableCards();
-        }
-    }
-
-    private int health;
-    public int Health
-    {
-        get { return health;}
-        set
-        {
-            if (value > charAsset.MaxHealth)
-                health = charAsset.MaxHealth;
-            else
-                health = value;
-            if (value <= 0)
-                Die(); 
-        }
-    }*/
-
     // CODE FOR EVENTS TO LET CREATURES KNOW WHEN TO CAUSE EFFECTS
     public delegate void VoidWithNoArguments();
     //public event VoidWithNoArguments CreaturePlayedEvent;
@@ -145,14 +89,6 @@ public class Player : MonoBehaviour, ICharacter
     }
 
     // STUFF THAT OUR PLAYER CAN DO
-    /*
-    // get mana from coin or other spells 
-    public void GetBonusMana(int amount)
-    {
-        bonusManaThisTurn += amount;
-        ManaThisTurn += amount;
-        ManaLeft += amount;
-    }*/
 
     // FOR TESTING ONLY
     void Update()
@@ -168,14 +104,9 @@ public class Player : MonoBehaviour, ICharacter
         {
             if (hand.CardsInHand.Count < PArea.handVisual.slots.Children.Length)
             {
-                // 1) logic: add card to hand
-                CardLogic newCard = new CardLogic(deck.cards[0]);
+                CardLogic newCard = deck.DealCard();
                 newCard.owner = this;
                 hand.CardsInHand.Insert(0, newCard);
-                // Debug.Log(hand.CardsInHand.Count);
-                // 2) logic: remove the card from the deck
-                deck.cards.RemoveAt(0);
-                // 2) create a command
                 new DrawACardCommand(hand.CardsInHand[0], this, fast, fromDeck: true).AddToQueue(); 
             }
         }
@@ -186,19 +117,14 @@ public class Player : MonoBehaviour, ICharacter
        
     }
 
-    // get card NOT from deck (a token or a coin)
-    public void GetACardNotFromDeck(CardAsset cardAsset)
+    public void TakeCardBackIntoHand(CardLogic cardLogic, GameObject card)
     {
         if (hand.CardsInHand.Count < PArea.handVisual.slots.Children.Length)
         {
             // 1) logic: add card to hand
-            CardLogic newCard = new CardLogic(cardAsset);
-            newCard.owner = this;
-            hand.CardsInHand.Insert(0, newCard);
-            // 2) send message to the visual Deck
-            new DrawACardCommand(hand.CardsInHand[0], this, fast: true, fromDeck: false).AddToQueue(); 
+            cardLogic.owner = this;
+            hand.CardsInHand.Insert(0, cardLogic);
         }
-        // no removal from deck because the card was not in the deck
     }
 
     // 2 METHODS FOR PLAYING SPELLS
@@ -242,33 +168,17 @@ public class Player : MonoBehaviour, ICharacter
         // check if this is a creature or a spell
     }
 
-    /*
-    // METHODS TO PLAY CREATURES 
-    // 1st overload - by ID
-    public void PlayACreatureFromHand(int UniqueID, int tablePos)
+    public void PlayItemFromHand(int UniqueID, int tablePos)
     {
-        PlayACreatureFromHand(CardLogic.CardsCreatedThisGame[UniqueID], tablePos);
+        PlayItemFromHand(CardLogic.CardsCreatedThisGame[UniqueID], tablePos);
     }
 
-    // 2nd overload - by logic units
-    public void PlayACreatureFromHand(CardLogic playedCard, int tablePos)
+    public void PlayItemFromHand(CardLogic playedCard, int tablePos)
     {
-        // Debug.Log(ManaLeft);
-        // Debug.Log(playedCard.CurrentManaCost);
-        ManaLeft -= playedCard.CurrentManaCost;
-        // Debug.Log("Mana Left after played a creature: " + ManaLeft);
-        // create a new creature object and add it to Table
-        CreatureLogic newCreature = new CreatureLogic(this, playedCard.ca);
-        table.CreaturesOnTable.Insert(tablePos, newCreature);
-        // 
-        new PlayACreatureCommand(playedCard, this, tablePos, newCreature.UniqueCreatureID).AddToQueue();
-        // cause battlecry Effect
-        if (newCreature.effect != null)
-            newCreature.effect.WhenACreatureIsPlayed();
-        // remove this card from hand
+        table.PlaceCardAt(tablePos, playedCard);
+        new PlayAnItemCommand(playedCard, this, tablePos, playedCard.UniqueCardID).AddToQueue();
         hand.CardsInHand.Remove(playedCard);
-        HighlightPlayableCards();
-    } */
+    }
 
     public void Die()
     {
@@ -280,38 +190,7 @@ public class Player : MonoBehaviour, ICharacter
         new GameOverCommand(this).AddToQueue();
     }
 
-    /*
-    // use hero power - activate is effect like you`ve payed a spell
-    public void UseHeroPower()
-    {
-        ManaLeft -= 2;
-        usedHeroPowerThisTurn = true;
-        HeroPowerEffect.ActivateEffect();
-    }
-
-    // METHOD TO SHOW GLOW HIGHLIGHTS
-    public void HighlightPlayableCards(bool removeAllHighlights = false)
-    {
-        //Debug.Log("HighlightPlayable remove: "+ removeAllHighlights);
-        foreach (CardLogic cl in hand.CardsInHand)
-        {
-            GameObject g = IDHolder.GetGameObjectWithID(cl.UniqueCardID);
-            if (g!=null)
-                g.GetComponent<OneCardManager>().CanBePlayedNow = (cl.CurrentManaCost <= ManaLeft) && !removeAllHighlights;
-        }
-
-        foreach (CreatureLogic crl in table.CreaturesOnTable)
-        {
-            GameObject g = IDHolder.GetGameObjectWithID(crl.UniqueCreatureID);
-            if(g!= null)
-                g.GetComponent<OneCreatureManager>().CanAttackNow = (crl.AttacksLeftThisTurn > 0) && !removeAllHighlights;
-        }   
-        // highlight hero power
-        PArea.HeroPower.Highlighted = (!usedHeroPowerThisTurn) && (ManaLeft > 1) && !removeAllHighlights;
-    }
-    */
-
-    // START GAME METHODS
+     // START GAME METHODS
     public void LoadCharacterInfoFromAsset()
     {
     //    Health = charAsset.MaxHealth;

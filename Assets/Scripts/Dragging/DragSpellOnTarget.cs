@@ -5,7 +5,7 @@ using DG.Tweening;
 public class DragSpellOnTarget : DraggingActions {
 
     //public TargetingOptions Targets = TargetingOptions.AllCharacters;
-    private SpriteRenderer sr;
+    //private SpriteRenderer sr;
     private LineRenderer lr;
     private WhereIsTheCardOrCreature whereIsThisCard;
     private VisualStates tempVisualState;
@@ -19,16 +19,16 @@ public class DragSpellOnTarget : DraggingActions {
         get
         { 
             // TEST LINE: this is just to test playing creatures before the game is complete 
-            // return true;
+             return true;
 
             // TODO : include full field check
-            return base.CanDrag && manager.CanBePlayedNow;
+            //return base.CanDrag && manager.CanBePlayedNow;
         }
     }
 
     void Awake()
     {
-        sr = GetComponent<SpriteRenderer>();
+        //sr = GetComponent<SpriteRenderer>();
         lr = GetComponentInChildren<LineRenderer>();
         lr.sortingLayerName = "Above Everything";
         triangle = transform.Find("Triangle");
@@ -43,7 +43,7 @@ public class DragSpellOnTarget : DraggingActions {
     {
         tempVisualState = whereIsThisCard.VisualState;
         whereIsThisCard.VisualState = VisualStates.Dragging;
-        sr.enabled = true;
+       // sr.enabled = true;
         lr.enabled = true;
     }
 
@@ -201,7 +201,7 @@ public class DragSpellOnTarget : DraggingActions {
         // return target and arrow to original position
         // this position is special for spell cards to show the arrow on top
         transform.localPosition = new Vector3(0f, 0f, 0.4f);
-        sr.enabled = false;
+        //sr.enabled = false;
         lr.enabled = false;
         triangleSR.enabled = false;
 

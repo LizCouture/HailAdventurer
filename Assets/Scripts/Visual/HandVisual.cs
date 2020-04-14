@@ -180,6 +180,31 @@ public class HandVisual : MonoBehaviour
         s.OnComplete(()=>ChangeLastCardStatusToInHand(card, w));
     }
 
+    public void TakeCardBackIntoHand(GameObject card)
+    {
+        foreach (Transform t in card.GetComponentsInChildren<Transform>())
+            t.tag = owner.ToString() + "Card";
+        // pass this card to HandVisual class
+        AddCard(card);
+
+        // Bring card to front while it travels from draw spot to hand
+        WhereIsTheCardOrCreature w = card.GetComponent<WhereIsTheCardOrCreature>();
+        w.BringToFront();
+        w.Slot = 0;
+        w.VisualState = VisualStates.Transition;
+
+        // Confirm that card already has ID
+        IDHolder id = card.GetComponent<IDHolder>();
+        Debug.Log("Picking up card with ID: " + id.UniqueID);
+
+        Sequence s = DOTween.Sequence();
+        s.Append(card.transform.DOLocalMove(slots.Children[0].transform.localPosition, GlobalSettings.Instance.CardTransitionTimeFast));
+        if (TakeCardsOpenly)
+            s.Insert(0f, card.transform.DORotate(Vector3.zero, GlobalSettings.Instance.CardTransitionTimeFast));
+
+        s.OnComplete(() => ChangeLastCardStatusToInHand(card, w));
+    }
+
     // this method will be called when the card arrived to hand 
     void ChangeLastCardStatusToInHand(GameObject card, WhereIsTheCardOrCreature w)
     {
@@ -191,7 +216,7 @@ public class HandVisual : MonoBehaviour
 
         // set correct sorting order
         w.SetHandSortingOrder();
-        // end command execution for DrawACArdCommand
+        // end command execution for DrawACArdCommand or TakeCardBackCommand
         Command.CommandExecutionComplete();
     }
 

@@ -15,4 +15,4 @@ MonoBehaviour:
   AvatarImage: {fileID: 21300000, guid: 5d34b7f44a6613a41bf13cf41ffec31a, type: 3}
   PlayerTextTint:
     serializedVersion: 2
-    rgba: 9010803
+    rgba: 4287200883

@@ -21,6 +21,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         Players = new List<NetworkPlayer>();
+        DontDestroyOnLoad(gameObject);
     }
 
     public void initializeGame()

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 
@@ -13,7 +14,6 @@ public class GameEvent
     public bool timed;
     public int duration;
 
-    public GameTimeline myTimeline;
 
     /*
      * GameEvent-
@@ -33,9 +33,8 @@ public class GameEvent
         this.duration = 0;
     }
 
-    public GameEvent(GameTimeline timeline, TimelineEventType type, bool timed, int duration = 0)
+    public GameEvent(TimelineEventType type, bool timed, int duration = 0)
     {
-        myTimeline = timeline;
         this.type = type;
         this.timed = timed;
         this.duration = duration;
@@ -43,18 +42,23 @@ public class GameEvent
 
     /*
      * These actions occur whenever this event starts
+     * 
+     * IMPORTANT:  By default, base.onStart() will end the event after 1/2 a second.
+     * You should never call base.onStart() unless you're testing with an unfinished
+     * timeline.
      */
     public virtual void onStart()
     {
-        //TODO:  Don't do this.  It should be different for every action
-        onEnd();
+        Task.Delay(500).ContinueWith(t=> onEnd());
     }
 
     /*
      * These actions occur whenever this event ends
+     * This should be called by the GameManager, through the timeline.
      */
     public virtual void onEnd()
     {
-        myTimeline.nextInQueue();
+        GameManager.Instance.goToNextEvent();
     }
+
 }

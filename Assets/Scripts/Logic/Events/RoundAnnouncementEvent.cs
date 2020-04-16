@@ -1,14 +1,18 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Doozy.Engine.UI;
+using System.Threading.Tasks;
 
 public class RoundAnnouncementEvent : GameEvent
 {
     public int roundNum;
 
-    public RoundAnnouncementEvent(GameTimeline tl, bool timed, int roundNum, int duration = 0)
+    public string viewCat = "Gameplay";
+    public string viewName = "RoundAnnouncement";
+
+    public RoundAnnouncementEvent(bool timed, int roundNum, int duration = 0)
     {
-        myTimeline = tl;
         this.type = TimelineEventType.RoundAnnouncement;
         this.timed = timed;
         this.duration = duration;
@@ -17,13 +21,16 @@ public class RoundAnnouncementEvent : GameEvent
 
     public override void onStart()
     {
-        base.onStart();
         Debug.Log("ANNOUNCING ROUND " + roundNum.ToString());
+        UIView.ShowView(viewCat, viewName);
+        Task.Delay(3000).ContinueWith(t => GameManager.Instance.endCurrentEvent());
+        //base.onStart();
     }
 
     public override void onEnd()
     {
         Debug.Log("ENDING ROUND " + roundNum.ToString() + " ANNOUNCEMENT");
+        UIView.HideView(viewCat, viewName);
         base.onEnd();
     }
 }

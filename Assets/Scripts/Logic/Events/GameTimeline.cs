@@ -5,15 +5,16 @@ using UnityEngine;
 public class GameTimeline
 { 
     public Queue<GameEvent> timeline;
+    public GameEvent currentEvent;
     public bool playingTimeline;
     
     public Dictionary<int, int> roundsByPlayer = new Dictionary<int, int>()
-                                                {   {3, 4 },
-                                                    {4, 4 },
-                                                    {5, 3 },
-                                                    {6, 2 },
-                                                    {7, 2 },
-                                                    {8, 2 } };
+                                                {   {3, 2 },
+                                                    {4, 2 },
+                                                    {5, 2 },
+                                                    {6, 1 },
+                                                    {7, 1 },
+                                                    {8, 1 } };
     public const int ROUND_ANNOUNCEMENT_DURATION = 10;
     public const int ADVENTURER_ANNOUNCEMENT_DURATION = 30;
     public const int PLAY_ITEMS_DURATION = 30;
@@ -30,7 +31,7 @@ public class GameTimeline
             Debug.LogError("Too few players in GameTimeline.  We shouldn't be here.");
             return;
         }
-        numRounds = roundsByPlayer[GameManager.Instance.Players.Count];
+        numRounds = roundsByPlayer[GameManager.Instance.playerCount()];
         timeline = generateTimeline(numPlayers);
     }
 
@@ -49,45 +50,67 @@ public class GameTimeline
     {
         // Intro
         Queue<GameEvent> tl = new Queue<GameEvent>();
-        tl.Enqueue(new IntroGameEvent(this, false));
+        tl.Enqueue(new IntroGameEvent(false));
 
         // Tutorial
-        tl.Enqueue(new TutorialGameEvent(this, false));
+        tl.Enqueue(new TutorialGameEvent(false));
         
         // Rounds of RoundAnnouncement, AdventurerAnnouncement, Cards Played, Cards Presented, Cards Selected, Points Awardsd
         // Rounds determined by number of players.
         for (int i = 0; i < numRounds; i++)
         {
-            tl.Enqueue(new RoundAnnouncementEvent(this, true, i, ROUND_ANNOUNCEMENT_DURATION));
+            tl.Enqueue(new RoundAnnouncementEvent(true, i, ROUND_ANNOUNCEMENT_DURATION));
             // TODO:  Shuffle order of players maybe?
             // Each player gets a chance to be the adventurer every round.
-            for (int j = 0; j < GameManager.Instance.Players.Count; j++)
+            for (int j = 0; j < GameManager.Instance.playerCount(); j++)
             {
-                tl.Enqueue(new AdventurerAnnouncementEvent(this, true, j, ADVENTURER_ANNOUNCEMENT_DURATION));
-                tl.Enqueue(new PlayItemsEvent(this, true, PLAY_ITEMS_DURATION));
+                tl.Enqueue(new AdventurerAnnouncementEvent(true, j, ADVENTURER_ANNOUNCEMENT_DURATION));
+                tl.Enqueue(new PlayItemsEvent(true, PLAY_ITEMS_DURATION));
 
                 // Each player who isn't the adventurer gets a chance to sell.
-                for (int k = 0; k < GameManager.Instance.Players.Count; k++)
+                for (int k = 0; k < GameManager.Instance.playerCount(); k++)
                 {
                     if (k != j) {
-                        tl.Enqueue(new SellItemsEvent(this, true, k, SELL_ITEMS_DURATION));
+                        tl.Enqueue(new SellItemsEvent(true, k, SELL_ITEMS_DURATION));
                     }
                 }
-                tl.Enqueue(new ChooseItemsEvent(this, true, j, CHOOSE_ITEMS_DURATION));
-                tl.Enqueue(new ReportAdventureWinnerEvent(this, true, REPORT_WINNER_DURATION));
+                tl.Enqueue(new ChooseItemsEvent(true, j, CHOOSE_ITEMS_DURATION));
+                tl.Enqueue(new ReportAdventureWinnerEvent(true, REPORT_WINNER_DURATION));
             }
         }
 
         // Final Score
-        tl.Enqueue(new GameOverEvent(this, false));
+        tl.Enqueue(new GameOverEvent(false));
 
         return tl;
     }
 
     public void nextInQueue()
     {
+        Debug.Log("GameTimeline.nextInQueue");
         playingTimeline = true;
-        timeline.Dequeue().onStart();
+        currentEvent = timeline.Dequeue();
+        currentEvent.onStart();
+    }
+
+    public void endCurrentEvent()
+    {
+        Debug.Log("timeline end current event");
+        currentEvent.onEnd();
+    }
+
+    public int queueLength()
+    {
+        return timeline.Count;
+    }
+
+    public override string ToString()
+    {
+        string ret = "";
+        foreach (var i in timeline.ToArray()) {
+            ret += i.ToString() + ", ";
+        }
+        return ret;
     }
 
 }

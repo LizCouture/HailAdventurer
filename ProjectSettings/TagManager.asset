@@ -7,6 +7,10 @@ TagManager:
   - EmptySpace
   - LowCard
   - TopCard
+  - LowPlayer
+  - TopPlayer
+  - LowItem
+  - TopItem
   layers:
   - Default
   - TransparentFX

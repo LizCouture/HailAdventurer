@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class ReportAdventureWinnerEvent : GameEvent
 {
-    public ReportAdventureWinnerEvent(GameTimeline tl, bool timed, int duration = 0)
+    public ReportAdventureWinnerEvent(bool timed, int duration = 0)
     {
-        this.myTimeline = tl;
         this.type = TimelineEventType.ReportAdventureWinner;
         this.timed = timed;
         this.duration = duration;
@@ -14,8 +13,8 @@ public class ReportAdventureWinnerEvent : GameEvent
 
     public override void onStart()
     {
-        base.onStart();
         Debug.Log("We have a winner!");
+        base.onStart();
     }
 
     public override void onEnd()

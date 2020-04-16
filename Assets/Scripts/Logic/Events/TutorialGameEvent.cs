@@ -1,10 +1,15 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Doozy.Engine.UI;
+using System;
 
 public class TutorialGameEvent : GameEvent
 {
-    public TutorialGameEvent(GameTimeline tl, bool timed, int duration = 0)
+    public string viewCat = "Gameplay";
+    public string viewName = "Tutorial01";
+
+    public TutorialGameEvent(bool timed, int duration = 0)
     {
         this.type = TimelineEventType.Tutorial;
         this.timed = timed;
@@ -13,13 +18,15 @@ public class TutorialGameEvent : GameEvent
 
     public override void onStart()
     {
-        base.onStart();
         Debug.Log("Running Tutorial");
+        UIView.ShowView(viewCat, viewName);
+       
     }
 
     public override void onEnd()
     {
-        base.onEnd();
+        UIView.HideView(viewCat, viewName);
         Debug.Log("Done With Tutorial");
+        base.onEnd();
     }
 }

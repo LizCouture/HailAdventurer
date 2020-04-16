@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class GameOverEvent : GameEvent
 {
-    public GameOverEvent(GameTimeline tl, bool timed, int duration = 0)
+    public GameOverEvent(bool timed, int duration = 0)
     {
-        this.myTimeline = tl;
         this.type = TimelineEventType.GameOver;
         this.timed = timed;
         this.duration = duration;
@@ -14,8 +13,8 @@ public class GameOverEvent : GameEvent
 
     public override void onStart()
     {
-        base.onStart();
         Debug.Log("Game over!");
+        base.onStart();
     }
 
     public override void onEnd()

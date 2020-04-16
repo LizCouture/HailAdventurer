@@ -6360,7 +6360,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.38238952, y: 0.78373873}
   m_AnchorMax: {x: 0.6196106, y: 0.8758769}
-  m_AnchoredPosition: {x: -1.0000229, y: 1.8899994}
+  m_AnchoredPosition: {x: -1.0000305, y: 1.8899994}
   m_SizeDelta: {x: 2, y: -0.5299988}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &693449693
@@ -6410,7 +6410,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 38.85
+  m_fontSize: 32.25
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -7634,7 +7634,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.37300003, y: 0}
   m_AnchorMax: {x: 0.6278053, y: 0.18750001}
-  m_AnchoredPosition: {x: -0.16000366, y: 19}
+  m_AnchoredPosition: {x: -0, y: 19}
   m_SizeDelta: {x: -2.289978, y: -32.52002}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1012424539
@@ -7656,7 +7656,7 @@ MonoBehaviour:
   StartAlpha: 1
   AllowMultipleClicks: 1
   ButtonCategory: MenuItems
-  ButtonName: Back
+  ButtonName: AllHere
   ClickMode: 0
   DeselectButtonAfterClick: 0
   DisableButtonBetweenClicksInterval: 0.2
@@ -8516,7 +8516,18 @@ MonoBehaviour:
         CustomSortingLayer: Default
       Event:
         m_PersistentCalls:
-          m_Calls: []
+          m_Calls:
+          - m_Target: {fileID: 1371406065}
+            m_MethodName: startGame
+            m_Mode: 1
+            m_Arguments:
+              m_ObjectArgument: {fileID: 0}
+              m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+              m_IntArgument: 0
+              m_FloatArgument: 0
+              m_StringArgument: 
+              m_BoolArgument: 0
+            m_CallState: 2
       GameEvents: []
       SoundData:
         SoundSource: 0
@@ -16312,7 +16323,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1843217971}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1371406065
 MonoBehaviour:
@@ -16336,7 +16347,6 @@ MonoBehaviour:
   - {fileID: 1007915169}
   - {fileID: 1828175260}
   - {fileID: 1500720487}
-  gm: {fileID: 0}
   roomName: 
   popup: {fileID: 1738210604}
 --- !u!1001 &1440893375
@@ -19716,7 +19726,7 @@ MonoBehaviour:
   StartAlpha: 1
   CanvasName: MasterCanvas
   CustomCanvasName: 0
-  DontDestroyCanvasOnLoad: 1
+  DontDestroyCanvasOnLoad: 0
 --- !u!114 &1818590249
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -19841,10 +19851,9 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1592035334}
-  - {fileID: 1981838543}
   - {fileID: 1371406064}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1855945181
 GameObject:
@@ -25472,12 +25481,12 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1981838542}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 1283.9412, y: -173.50621, z: -11.59375}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1843217971}
-  m_RootOrder: 1
+  m_Father: {fileID: 0}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1981838544
 MonoBehaviour:
@@ -25528,7 +25537,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.256, y: 0.8758769}
   m_AnchorMax: {x: 0.74500006, y: 1}
-  m_AnchoredPosition: {x: -0.5000458, y: -2.2299957}
+  m_AnchoredPosition: {x: -0.5000305, y: -2.2299805}
   m_SizeDelta: {x: 1.6600037, y: -7.640999}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1987024861
@@ -25578,7 +25587,7 @@ MonoBehaviour:
   m_outlineColor:
     serializedVersion: 2
     rgba: 4278190080
-  m_fontSize: 48.2
+  m_fontSize: 39.15
   m_fontSizeBase: 36
   m_fontWeight: 400
   m_enableAutoSizing: 1
@@ -28260,7 +28269,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2120326951
 GameObject:
@@ -29321,6 +29330,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Layer
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 532988705227506936, guid: f38b3e9eed3bc3947ad67e47b8e7baf3,
+        type: 3}
+      propertyPath: m_GlobalPointSize
+      value: 18
       objectReference: {fileID: 0}
     - target: {fileID: 532988705227506938, guid: f38b3e9eed3bc3947ad67e47b8e7baf3,
         type: 3}

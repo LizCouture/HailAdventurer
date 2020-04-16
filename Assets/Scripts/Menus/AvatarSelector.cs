@@ -10,13 +10,6 @@ public class AvatarSelector : MonoBehaviour
 
     public CharacterAsset selectedAvatar;
 
-    private GameManager gm;
-
-    private void Start()
-    {
-        gm = GameManager.Instance;
-
-    }
 
     public void initializeAvatars()
     {
@@ -24,7 +17,7 @@ public class AvatarSelector : MonoBehaviour
         int numSlots = avatarSlots.Count;
         for (int i = 0; i < numSlots; i++)
         {
-            CharacterAsset newAv = gm.avatarManager.DealAvatar();
+            CharacterAsset newAv = GameManager.Instance.avatarManager.DealAvatar();
             avatarAssets.Add(newAv);
         }
 

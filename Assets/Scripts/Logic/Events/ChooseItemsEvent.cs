@@ -6,9 +6,8 @@ public class ChooseItemsEvent : GameEvent
 {
     public int playerIndex;
 
-    public ChooseItemsEvent(GameTimeline tl, bool timed, int playerIndex, int duration = 0)
+    public ChooseItemsEvent(bool timed, int playerIndex, int duration = 0)
     {
-        this.myTimeline = tl;
         this.type = TimelineEventType.ChooseItems;
         this.timed = timed;
         this.duration = duration;

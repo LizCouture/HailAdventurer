@@ -309,93 +309,6 @@ MonoBehaviour:
   - Category: Menus
     InstantAction: 0
     Name: MainMenu
---- !u!114 &-989575570083012492
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ea82279f292f4f6ebe47212017fa5f89, type: 3}
-  m_Name: LoadSceneNode
-  m_EditorClassIdentifier: 
-  ErrorNodeNameIsEmpty: 0
-  ErrorDuplicateNameFoundInGraph: 0
-  m_inputSockets:
-  - m_connectionMode: 1
-    m_connections:
-    - m_inputConnectionPoint: {x: -2, y: 4}
-      m_outputConnectionPoint: {x: 202, y: 4}
-      m_id: bcb4acf7-12d8-4694-852c-6bd1d0326c61
-      m_inputNodeId: 15bc0a3a-f234-469d-abe7-04f81a0732de
-      m_inputSocketId: 6ed55305-5cc0-48f0-bf67-32478260bf22
-      m_outputNodeId: b9671b51-6db5-4356-8c1b-653c9c90cfdc
-      m_outputSocketId: 8e1dc601-f849-4f2b-a9e1-439a166d7d3c
-    m_connectionPoints:
-    - {x: -2, y: 4}
-    - {x: 202, y: 4}
-    m_direction: 0
-    m_canBeDeleted: 0
-    m_canBeReordered: 0
-    m_curveModifier: 0
-    m_height: 24
-    m_width: 216
-    m_x: 0
-    m_y: 38
-    m_id: 6ed55305-5cc0-48f0-bf67-32478260bf22
-    m_nodeId: 15bc0a3a-f234-469d-abe7-04f81a0732de
-    m_socketName: InputSocket_0
-    m_value: '{}'
-    m_valueTypeQualifiedName: Doozy.Engine.Nody.Connections.PassthroughConnection,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_outputSockets:
-  - m_connectionMode: 0
-    m_connections: []
-    m_connectionPoints:
-    - {x: -2, y: 4}
-    - {x: 202, y: 4}
-    m_direction: 1
-    m_canBeDeleted: 0
-    m_canBeReordered: 0
-    m_curveModifier: 0
-    m_height: 24
-    m_width: 216
-    m_x: 0
-    m_y: 62
-    m_id: 6f8587c1-0e25-45aa-8e92-0dde3dc2eaf9
-    m_nodeId: 15bc0a3a-f234-469d-abe7-04f81a0732de
-    m_socketName: OutputSocket_0
-    m_value: '{}'
-    m_valueTypeQualifiedName: Doozy.Engine.Nody.Connections.PassthroughConnection,
-      Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_nodeType: 4
-  m_allowDuplicateNodeName: 0
-  m_allowEmptyNodeName: 0
-  m_canBeDeleted: 1
-  m_debugMode: 0
-  m_useFixedUpdate: 0
-  m_useLateUpdate: 0
-  m_useUpdate: 0
-  m_height: 192
-  m_width: 216
-  m_x: 684
-  m_y: -204
-  m_minimumInputSocketsCount: 1
-  m_minimumOutputSocketsCount: 1
-  m_graphId: 8ac6f096-bede-4710-a447-ce5fe3f6470e
-  m_id: 15bc0a3a-f234-469d-abe7-04f81a0732de
-  m_name: Load Scene
-  m_notes: 
-  ErrorNoSceneName: 1
-  ErrorBadBuildIndex: 0
-  GetSceneBy: 0
-  LoadSceneMode: 0
-  AllowSceneActivation: 1
-  SceneActivationDelay: 0.2
-  SceneBuildIndex: 0
-  SceneName: 
 --- !u!114 &11400000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -420,7 +333,7 @@ MonoBehaviour:
   m_version: 1
   m_description: 
   m_id: 8ac6f096-bede-4710-a447-ce5fe3f6470e
-  m_lastModified: 132313909122627814
+  m_lastModified: 132314476755727704
 --- !u!114 &1458179816784930898
 MonoBehaviour:
   m_ObjectHideFlags: 1

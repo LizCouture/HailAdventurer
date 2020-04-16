@@ -9,7 +9,6 @@ public class LobbyManager : MonoBehaviour
     public PlayerSlot[] playerSlots;
 
     public NetworkPlayer localPlayer;
-    public GameManager gm = GameManager.Instance;
 
     [SerializeField]
     protected string roomName;
@@ -22,7 +21,6 @@ public class LobbyManager : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        gm = GameManager.Instance;
         randomizeRoomname();
     }
 
@@ -47,21 +45,18 @@ public class LobbyManager : MonoBehaviour
     {
         popup.SetActive(true);
         CreateCharacterMenu ccm = popup.GetComponent<CreateCharacterMenu>();
-        ccm.OpenMenu(gm.localPlayer);
+        ccm.OpenMenu(GameManager.Instance.localPlayer);
     }
 
     public void updateSlotPlayers()
     {
-        gm = GameManager.Instance;
-        Debug.Log("updateSlotPlayers");
-        Debug.Log("gm.Players.Count: " + gm.ToString());
-        Debug.Log("playerSlots.Length: " + playerSlots.Length);
-        if(gm.Players.Count > playerSlots.Length)
+        GameManager gm = GameManager.Instance;
+        if(gm.playerCount() > playerSlots.Length)
         {
-            Debug.LogError("Too many players: " + gm.Players.Count);
+            Debug.LogError("Too many players: " + gm.playerCount());
             return;
         }
-        for (int i = 0; i < gm.Players.Count; i++)
+        for (int i = 0; i < gm.playerCount(); i++)
         {
             NetworkPlayer player = gm.getPlayerByID(i);
             playerSlots[i].setPlayer(player);
@@ -72,13 +67,28 @@ public class LobbyManager : MonoBehaviour
                 playerSlots[i].setState(PlayerSlot.State.Joined);
             }
         }
-        if (playerSlots.Length > gm.Players.Count)
+        if (playerSlots.Length > gm.playerCount())
         {
-            for (int i = gm.Players.Count; i < playerSlots.Length; i++)
+            for (int i = gm.playerCount(); i < playerSlots.Length; i++)
             {
                 playerSlots[i].setPlayer(null);
                 playerSlots[i].setState(PlayerSlot.State.Empty);
             }
         }
+    }
+
+    public void startGame()
+    {
+        // First ensure we have enough players
+        if (GameManager.Instance.playerCount() < 3)
+        {
+            for (int i = GameManager.Instance.playerCount(); i < 3; i++)
+            {
+                GameManager.Instance.addAIPlayer();
+            }
+        }
+
+        // READY GO
+        GameManager.Instance.startGame();
     }
 }

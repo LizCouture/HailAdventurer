@@ -31,14 +31,11 @@ public class PlayerSlot : MonoBehaviour
 
     private void fillFromPlayer()
     {
-        Debug.Log("FillFromPlayer characterAsset: " + player.avatar);
         if (player.nickname == null)
             PlayerName.text = "Noname";
         else PlayerName.text = player.nickname;
         characterAsset = player.avatar;
         PlayerName.color = characterAsset.PlayerTextTint;
-        Debug.Log("Avatar: " + Avatar.ToString());
-        Debug.Log("characterAsset.Image: " + characterAsset.AvatarImage.ToString());
         Avatar.sprite = characterAsset.AvatarImage;
     }
 
@@ -51,14 +48,12 @@ public class PlayerSlot : MonoBehaviour
 
     public void setState(State state)
     {
-        Debug.Log("setState: " + state.ToString());
         slotState = state;
         stateChangeHappened();
     }
 
     private void stateChangeHappened()
     {
-        Debug.Log("stateChangeHappened");
         switch (slotState)
         {
             case State.Empty:

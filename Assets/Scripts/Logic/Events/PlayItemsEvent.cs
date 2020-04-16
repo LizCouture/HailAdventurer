@@ -5,9 +5,8 @@ using UnityEngine;
 public class PlayItemsEvent : GameEvent
 {
 
-    public PlayItemsEvent(GameTimeline tl, bool timed, int duration = 0)
+    public PlayItemsEvent(bool timed, int duration = 0)
     {
-        myTimeline = tl;
         this.type = TimelineEventType.PlayItems;
         this.timed = timed;
         this.duration = duration;
@@ -15,8 +14,8 @@ public class PlayItemsEvent : GameEvent
 
     public override void onStart()
     {
-        base.onStart();
         Debug.Log("Playing items begins!");
+        base.onStart();
     }
 
     public override void onEnd()

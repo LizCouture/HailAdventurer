@@ -8,12 +8,13 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public List<NetworkPlayer> Players;
+    private List<NetworkPlayer> Players;
 
     public int localPlayer;
 
     public LobbyManager lobbyManager;
     public AvatarManager avatarManager;
+    private GameTimeline timeline;
 
 
     // Start is called before the first frame update
@@ -45,6 +46,26 @@ public class GameManager : MonoBehaviour
         Players.Add(newPlayer);
         lobbyManager.updateSlotPlayers();
         return Players.Count - 1;
+    }
+    public void addAIPlayer()
+    {
+        NetworkPlayer ai = new NetworkPlayer();
+        ai.coins = 0;
+        ai.creatingAvatar = true;
+        ai.isConnected = false;
+        ai.isAI = true;
+        
+        string randomName = "";
+        string glyphs = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+        for (int i = 0; i < 7; i++)
+        {
+            randomName += glyphs[Random.Range(0, glyphs.Length)];
+        }
+        ai.nickname = randomName;
+        ai.avatar = avatarManager.DealAvatar();
+        Players.Add(ai);
+        lobbyManager.updateSlotPlayers();
+        connectPlayer(Players.Count - 1);
     }
 
     public void removePlayer(NetworkPlayer playerToRemove)
@@ -83,5 +104,38 @@ public class GameManager : MonoBehaviour
             Debug.LogError("getPlayerByID called with invalid id: " + id);
         }
         return Players[id];
+    }
+
+    public int playerCount()
+    {
+        return Players.Count;
+    }
+
+    public void startGame()
+    {
+        timeline = new GameTimeline(playerCount());
+        Debug.Log("timeLine: " + timeline.ToString());
+        goToNextEvent();
+    }
+
+    public void goToNextEvent()
+    {
+        Debug.Log("goToNextEvent");
+        if (timeline.queueLength() > 0)
+        {
+            timeline.nextInQueue();
+        }
+        else Debug.Log("Que complete");
+    }
+
+    public GameEvent currentEvent()
+    {
+        return timeline.currentEvent;
+    }
+
+    public void endCurrentEvent()
+    {
+        Debug.Log("GameManager: endCurrentEvent");
+        timeline.endCurrentEvent();
     }
 }

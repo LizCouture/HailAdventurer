@@ -11,7 +11,7 @@ public class PlayerDeckVisual : MonoBehaviour {
 
     void Start()
     {
-        CardsInDeck = GlobalSettings.Instance.Players[owner].deck.cards.Count;
+        CardsInDeck = GlobalSettings.Instance.Players[owner].deck.cardCount();
     }
 
     private int cardsInDeck = 0;

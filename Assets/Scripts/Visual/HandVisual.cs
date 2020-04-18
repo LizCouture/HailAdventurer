@@ -99,25 +99,6 @@ public class HandVisual : MonoBehaviour
         // Instantiate a card depending on its type
         GameObject card;
         card = GameObject.Instantiate(GlobalSettings.Instance.ItemCardPrefab, position, Quaternion.Euler(eulerAngles)) as GameObject;
-        /*if (c.MaxHealth > 0)
-        {
-            // this card is a creature card
-            card = GameObject.Instantiate(GlobalSettings.Instance.CreatureCardPrefab, position, Quaternion.Euler(eulerAngles)) as GameObject;
-        }
-        else
-        {
-            // this is a spell: checking for targeted or non-targeted spell
-            if (c.Targets == TargetingOptions.NoTarget)
-                card = GameObject.Instantiate(GlobalSettings.Instance.NoTargetSpellCardPrefab, position, Quaternion.Euler(eulerAngles)) as GameObject;
-            else
-            {
-                card = GameObject.Instantiate(GlobalSettings.Instance.TargetedSpellCardPrefab, position, Quaternion.Euler(eulerAngles)) as GameObject;
-                // pass targeting options to DraggingActions
-                DragSpellOnTarget dragSpell = card.GetComponentInChildren<DragSpellOnTarget>();
-                dragSpell.Targets = c.Targets;
-            }
-
-        }*/
 
         // apply the look of the card based on the info from CardAsset
         OneCardManager manager = card.GetComponent<OneCardManager>();

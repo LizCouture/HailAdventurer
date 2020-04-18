@@ -69,26 +69,15 @@ public class Player : MonoBehaviour, ICharacter
 
     public virtual void OnTurnStart()
     {
-        // add one mana crystal to the pool;
         Debug.Log("In ONTURNSTART for "+ gameObject.name);
-        //usedHeroPowerThisTurn = false;
-        //ManaThisTurn++;
-        //ManaLeft = ManaThisTurn;
-        //foreach (CreatureLogic cl in table.CreaturesOnTable)
-        //    cl.OnTurnStart();
-        //PArea.HeroPower.WasUsedThisTurn = false;
     }
 
     public void OnTurnEnd()
     {
         if(EndTurnEvent != null)
             EndTurnEvent.Invoke();
-        /*ManaThisTurn -= bonusManaThisTurn;
-        bonusManaThisTurn = 0;*/
         GetComponent<TurnMaker>().StopAllCoroutines();
     }
-
-    // STUFF THAT OUR PLAYER CAN DO
 
     // FOR TESTING ONLY
     void Update()
@@ -100,7 +89,7 @@ public class Player : MonoBehaviour, ICharacter
     // draw a single card from the deck
     public void DrawACard(bool fast = false)
     {
-        if (deck.cards.Count > 0)
+        if (deck.cardCount() > 0)
         {
             if (hand.CardsInHand.Count < PArea.handVisual.slots.Children.Length)
             {

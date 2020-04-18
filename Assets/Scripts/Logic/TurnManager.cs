@@ -6,9 +6,6 @@ using DG.Tweening;
 // this class will take care of switching turns and counting down time until the turn expires
 public class TurnManager : MonoBehaviour {
 
-    // PUBLIC FIELDS
-    //public CardAsset CoinCard;
-
     // for Singleton Pattern
     public static TurnManager Instance;
 
@@ -36,13 +33,6 @@ public class TurnManager : MonoBehaviour {
             TurnMaker tm = whoseTurn.GetComponent<TurnMaker>();
             // player`s method OnTurnStart() will be called in tm.OnTurnStart();
             tm.OnTurnStart();
-            //if (tm is PlayerTurnMaker)
-            //{
-                //whoseTurn.HighlightPlayableCards();
-            //}
-            // remove highlights for opponent.
-            //whoseTurn.otherPlayer.HighlightPlayableCards(true);
-                
         }
     }
 
@@ -61,8 +51,6 @@ public class TurnManager : MonoBehaviour {
 
     public void OnGameStart()
     {
-        //Debug.Log("In TurnManager.OnGameStart()");
-
         CardLogic.CardsCreatedThisGame.Clear();
         //CreatureLogic.CreaturesCreatedThisGame.Clear();
 
@@ -72,7 +60,7 @@ public class TurnManager : MonoBehaviour {
             //p.ManaLeft = 0;
             p.LoadCharacterInfoFromAsset();
             p.TransmitInfoAboutPlayerToVisual();
-            p.PArea.PDeck.CardsInDeck = p.deck.cards.Count;
+            p.PArea.PDeck.CardsInDeck = p.deck.cardCount();
             // move both portraits to the center
             p.PArea.Portrait.transform.position = p.PArea.InitialPortraitPosition.position;
         }

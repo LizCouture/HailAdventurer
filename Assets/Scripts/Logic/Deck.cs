@@ -4,7 +4,19 @@ using System.Collections.Generic;
 
 public class Deck : MonoBehaviour {
 
-    public List<CardAsset> cards = new List<CardAsset>();
+    private List<CardAsset> cards;
+
+
+    public Deck()
+    {
+        cards = new List<CardAsset>();
+    }
+
+    // To create a deck from a folder of scripted objects
+    public Deck(string resourceLocation)
+    {
+        cards = new List<CardAsset>(Resources.LoadAll<CardAsset>(resourceLocation));
+    }
 
     void Awake()
     {
@@ -16,6 +28,21 @@ public class Deck : MonoBehaviour {
         CardLogic newCard = new CardLogic(cards[0]);
         cards.RemoveAt(0);
         return newCard;
+    }
+
+    public void returnToDeck(CardAsset card)
+    {
+        cards.Add(card);
+    }
+
+    public int cardCount()
+    {
+        return cards.Count;
+    }
+
+    public void Shuffle()
+    {
+        cards.Shuffle();
     }
 	
 }

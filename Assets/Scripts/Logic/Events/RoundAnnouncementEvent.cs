@@ -23,7 +23,6 @@ public class RoundAnnouncementEvent : GameEvent
     {
         Debug.Log("ANNOUNCING ROUND " + roundNum.ToString());
         UIView.ShowView(viewCat, viewName);
-        Task.Delay(3000).ContinueWith(t => GameManager.Instance.endCurrentEvent());
         //base.onStart();
     }
 

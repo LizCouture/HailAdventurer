@@ -17,12 +17,14 @@ public class AdventurerAnnouncementEvent : GameEvent
     public override void onStart()
     {
         Debug.Log("Player " + GameManager.Instance.getPlayerByID(playerIndex).nickname + " is coming to town!");
-        base.onStart();
+        //base.onStart();
+        AdventurerAnnouncementManager.Instance.startAnnouncement();
     }
 
     public override void onEnd()
     {
         Debug.Log("Sell sell sell!!!");
+        AdventurerAnnouncementManager.Instance.endAnnouncement();
         base.onEnd();
     }
 }

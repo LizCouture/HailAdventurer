@@ -16,6 +16,17 @@ public class GameManager : MonoBehaviour
     public AvatarManager avatarManager;
     private GameTimeline timeline;
 
+    [SerializeField]
+    private Deck adventurerDeck;
+    [SerializeField]
+    private Deck adventurerDiscard;
+    [SerializeField]
+    private Deck itemDeck;
+    [SerializeField]
+    private Deck itemDiscard;
+
+    public CardAsset currentAdventurerCard;
+
 
     // Start is called before the first frame update
     void Start()
@@ -31,6 +42,11 @@ public class GameManager : MonoBehaviour
         Players = new List<NetworkPlayer>();
         Debug.Log("Players.Count: " + Players.Count);
         localPlayer = addPlayer(new NetworkPlayer());
+
+        adventurerDiscard = new Deck();
+        itemDiscard = new Deck();
+        adventurerDeck = new Deck("SO Assets/Cards/Adventurers");
+        currentAdventurerCard = null;
 
         avatarManager.ShuffleDictionary();
         lobbyManager.initializeLobby();
@@ -137,5 +153,13 @@ public class GameManager : MonoBehaviour
     {
         Debug.Log("GameManager: endCurrentEvent");
         timeline.endCurrentEvent();
+    }
+
+    public void dealNewAdventurer()
+    {
+        if (currentAdventurerCard != null)
+        {
+            adventurerDiscard.returnToDeck(currentAdventurerCard);
+        }
     }
 }

@@ -21,4 +21,26 @@ public class RoundAnnouncementManager : MonoBehaviour
         }
         roundNumber.text = (thisRound.roundNum + 1).ToString();
     }
+
+    public void endAnnouncement()
+    {
+        if (GameManager.Instance.currentEvent().type == TimelineEventType.RoundAnnouncement)
+        {
+            Debug.Log("Ending Tutorial.");
+            StartCoroutine(endAfterDuration(3.0f));
+        }
+        else
+        {
+            Debug.LogError("Attempt to end rountAnnouncement, but current event type is " + 
+                GameManager.Instance.currentEvent().type);
+        }
+    }
+
+
+    public IEnumerator endAfterDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        GameManager.Instance.endCurrentEvent();
+    }
 }

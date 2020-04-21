@@ -16,9 +16,13 @@ public class AdventurerAnnouncementEvent : GameEvent
 
     public override void onStart()
     {
-        Debug.Log("Player " + GameManager.Instance.getPlayerByID(playerIndex).nickname + " is coming to town!");
+        GameManager gm = GameManager.Instance;
+        Debug.Log("Player " + gm.getPlayerByID(playerIndex).nickname + " is coming to town!");
+
+        // Draw an adventure card, and display it.
+        gm.dealNewAdventurer();
         //base.onStart();
-        AdventurerAnnouncementManager.Instance.startAnnouncement();
+        AdventurerAnnouncementManager.Instance.startAnnouncement(gm.currentAdventurerCard);
     }
 
     public override void onEnd()

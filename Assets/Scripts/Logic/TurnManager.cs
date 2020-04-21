@@ -6,7 +6,7 @@ using DG.Tweening;
 // this class will take care of switching turns and counting down time until the turn expires
 public class TurnManager : MonoBehaviour {
 
-    // for Singleton Pattern
+  /*  // for Singleton Pattern
     public static TurnManager Instance;
 
     // PRIVATE FIELDS
@@ -123,6 +123,6 @@ public class TurnManager : MonoBehaviour {
     {
         timer.StopTimer();
     }
-
+*/
 }
 

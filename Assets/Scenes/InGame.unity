@@ -391,7 +391,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 788907460}
-  - {fileID: 2109440178}
   - {fileID: 1378224987}
   m_Father: {fileID: 690523922}
   m_RootOrder: 0
@@ -411,8 +410,6 @@ MonoBehaviour:
   PlayerID: 0
   charAsset: {fileID: 11400000, guid: 4d23b69ac9ddf0c459863f18702732db, type: 2}
   PArea: {fileID: 13669485}
-  deck: {fileID: 2109440179}
-  hand: {fileID: 788907461}
   table: {fileID: 1378224988}
 --- !u!114 &96599414
 MonoBehaviour:
@@ -654,7 +651,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1925931224}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &330640006
 MonoBehaviour:
@@ -802,7 +799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &455839214
 Transform:
   m_ObjectHideFlags: 0
@@ -1048,6 +1045,12 @@ PrefabInstance:
 --- !u!4 &528811085 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3196352447437593381, guid: 1d52c4c14c396d042a59474c0d1bdce4,
+    type: 3}
+  m_PrefabInstance: {fileID: 528811084}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &528811086 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3196352447437593382, guid: 1d52c4c14c396d042a59474c0d1bdce4,
     type: 3}
   m_PrefabInstance: {fileID: 528811084}
   m_PrefabAsset: {fileID: 0}
@@ -1426,6 +1429,9 @@ MonoBehaviour:
   smallAvatar: {fileID: 1999896300}
   largeNickname: {fileID: 624442023}
   smallNickname: {fileID: 1428417306}
+  largeCard: {fileID: 962884754}
+  smallCard: {fileID: 528811086}
+  commandText: {fileID: 1448223878}
 --- !u!1 &690523921
 GameObject:
   m_ObjectHideFlags: 0
@@ -1456,6 +1462,7 @@ Transform:
   - {fileID: 96599412}
   - {fileID: 1925931224}
   - {fileID: 1685082085}
+  - {fileID: 1011873360}
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1654,7 +1661,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 788907460}
-  - component: {fileID: 788907461}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -1676,19 +1682,6 @@ Transform:
   m_Father: {fileID: 96599412}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &788907461
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 788907459}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 631c88ddb5c375740972905f90c27829, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardsInHand: []
 --- !u!1 &862330541
 GameObject:
   m_ObjectHideFlags: 0
@@ -2111,6 +2104,18 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 566525725}
     m_Modifications:
+    - target: {fileID: 271488193, guid: 1d52c4c14c396d042a59474c0d1bdce4, type: 3}
+      propertyPath: TargetScale
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 271488193, guid: 1d52c4c14c396d042a59474c0d1bdce4, type: 3}
+      propertyPath: TargetPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 271488193, guid: 1d52c4c14c396d042a59474c0d1bdce4, type: 3}
+      propertyPath: TargetPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 528811088, guid: 1d52c4c14c396d042a59474c0d1bdce4, type: 3}
       propertyPath: m_Enabled
       value: 0
@@ -2194,7 +2199,13 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 962884752}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &971350103
+--- !u!1 &962884754 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3196352447437593382, guid: 1d52c4c14c396d042a59474c0d1bdce4,
+    type: 3}
+  m_PrefabInstance: {fileID: 962884752}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1011873359
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2202,41 +2213,28 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 971350104}
-  - component: {fileID: 971350105}
+  - component: {fileID: 1011873360}
   m_Layer: 0
-  m_Name: Deck
+  m_Name: PlayItemsManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &971350104
+--- !u!4 &1011873360
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 971350103}
+  m_GameObject: {fileID: 1011873359}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 1925931224}
-  m_RootOrder: 1
+  m_Father: {fileID: 690523922}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &971350105
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 971350103}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1b6a0bb49926f448b901fccadc7b1a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1021077624
 GameObject:
   m_ObjectHideFlags: 0
@@ -3453,7 +3451,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 96599412}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1378224988
 MonoBehaviour:
@@ -3835,7 +3833,7 @@ GameObject:
   - component: {fileID: 1448223879}
   - component: {fileID: 1448223878}
   m_Layer: 5
-  m_Name: Tell Us About Yourself
+  m_Name: CommandText
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3988,7 +3986,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1454099909}
-  - component: {fileID: 1454099910}
   m_Layer: 0
   m_Name: Hand
   m_TagString: Untagged
@@ -4010,19 +4007,6 @@ Transform:
   m_Father: {fileID: 1925931224}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1454099910
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1454099908}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 631c88ddb5c375740972905f90c27829, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  CardsInHand: []
 --- !u!1 &1473952846
 GameObject:
   m_ObjectHideFlags: 0
@@ -4323,10 +4307,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1685082085}
-  - component: {fileID: 1685082087}
   - component: {fileID: 1685082086}
   m_Layer: 0
-  m_Name: TurnManager
+  m_Name: TimerManager
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4366,7 +4349,7 @@ MonoBehaviour:
   TimerExpired:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1685082087}
+      - m_Target: {fileID: 0}
         m_MethodName: EndTurnTest
         m_Mode: 1
         m_Arguments:
@@ -4377,18 +4360,6 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
---- !u!114 &1685082087
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1685082084}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8cea22a294f461f4ba1d8ef018b6d4ba, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1758139607
 GameObject:
   m_ObjectHideFlags: 0
@@ -4771,7 +4742,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1454099909}
-  - {fileID: 971350104}
   - {fileID: 330640005}
   m_Father: {fileID: 690523922}
   m_RootOrder: 1
@@ -4791,8 +4761,6 @@ MonoBehaviour:
   PlayerID: 0
   charAsset: {fileID: 11400000, guid: 0617db6cde3787b48ba93b5eb11f195c, type: 2}
   PArea: {fileID: 0}
-  deck: {fileID: 971350105}
-  hand: {fileID: 1454099910}
   table: {fileID: 330640006}
 --- !u!114 &1925931226
 MonoBehaviour:
@@ -5819,49 +5787,6 @@ Canvas:
   m_SortingLayerID: 0
   m_SortingOrder: 0
   m_TargetDisplay: 0
---- !u!1 &2109440177
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2109440178}
-  - component: {fileID: 2109440179}
-  m_Layer: 0
-  m_Name: Deck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2109440178
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109440177}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 96599412}
-  m_RootOrder: 1
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2109440179
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2109440177}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e1b6a0bb49926f448b901fccadc7b1a3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &132264072675192643 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4476021446622568463, guid: 8dd75d26e25d74c4c8e849305ae20b74,
@@ -6597,6 +6522,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Timer
       objectReference: {fileID: 0}
+    - target: {fileID: 4299864830849361286, guid: a2ffcaa8ecd75874a8a9142575e0f66c,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4299864832168421494, guid: a2ffcaa8ecd75874a8a9142575e0f66c,
         type: 3}
       propertyPath: m_Camera
@@ -6656,7 +6586,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
-      objectReference: {fileID: 1685082087}
+      objectReference: {fileID: 0}
     - target: {fileID: 6585812657313346751, guid: a2ffcaa8ecd75874a8a9142575e0f66c,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName

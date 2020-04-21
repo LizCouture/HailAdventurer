@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Player : MonoBehaviour, ICharacter
+public class Player : MonoBehaviour
 {
     // PUBLIC FIELDS
     // int ID that we get from ID factory
@@ -18,12 +18,16 @@ public class Player : MonoBehaviour, ICharacter
     public bool usedHeroPowerThisTurn = false;*/
 
     // REFERENCES TO LOGICAL STUFF THAT BELONGS TO THIS PLAYER
+    
     public Deck deck;
     public Hand hand;
     public Table table;
 
     // a static array that will store both players, should always have 2 players
-    public static Player[] Players;
+    //public static Player[] Players;
+
+    // LOL jk we've got one.  This represents the local player.
+    public static Player Instance;
 
     // this value used exclusively for our coin spell
     //private int bonusManaThisTurn = 0;
@@ -37,7 +41,7 @@ public class Player : MonoBehaviour, ICharacter
     }
 
     // opponent player
-    public Player otherPlayer
+   /* public Player otherPlayer
     {
         get
         {
@@ -46,7 +50,7 @@ public class Player : MonoBehaviour, ICharacter
             else
                 return Players[0];
         }
-    }
+    }*/
 
     // CODE FOR EVENTS TO LET CREATURES KNOW WHEN TO CAUSE EFFECTS
     public delegate void VoidWithNoArguments();
@@ -56,15 +60,18 @@ public class Player : MonoBehaviour, ICharacter
     public event VoidWithNoArguments EndTurnEvent;
 
 
-
+    
     // ALL METHODS
     void Awake()
     {
+        Instance = this;
         // find all scripts of type Player and store them in Players array
         // (we should have only 2 players in the scene)
-        Players = GameObject.FindObjectsOfType<Player>();
+        //Players = GameObject.FindObjectsOfType<Player>();
         // obtain unique id from IDFactory
         PlayerID = IDFactory.GetUniqueID();
+        deck = GameManager.Instance.ItemDeck();
+        hand = new Hand();
     }
 
     public virtual void OnTurnStart()
@@ -91,12 +98,15 @@ public class Player : MonoBehaviour, ICharacter
     {
         if (deck.cardCount() > 0)
         {
-            if (hand.CardsInHand.Count < PArea.handVisual.slots.Children.Length)
+            if (hand.cardCount() < PArea.handVisual.slots.Children.Length)
             {
                 CardLogic newCard = deck.DealCard();
                 newCard.owner = this;
-                hand.CardsInHand.Insert(0, newCard);
-                new DrawACardCommand(hand.CardsInHand[0], this, fast, fromDeck: true).AddToQueue(); 
+                
+                hand.addCard(newCard);
+                GameManager.Instance.getPlayerByID(GameManager.Instance.localPlayer).addCardToHand(newCard);
+
+                new DrawACardCommand(hand.cardAtIndex(0), this, fast, fromDeck: true).AddToQueue(); 
             }
         }
         else
@@ -108,11 +118,12 @@ public class Player : MonoBehaviour, ICharacter
 
     public void TakeCardBackIntoHand(CardLogic cardLogic, GameObject card)
     {
-        if (hand.CardsInHand.Count < PArea.handVisual.slots.Children.Length)
+        if (hand.cardCount() < PArea.handVisual.slots.Children.Length)
         {
             // 1) logic: add card to hand
             cardLogic.owner = this;
-            hand.CardsInHand.Insert(0, cardLogic);
+            hand.addCard(cardLogic);
+            GameManager.Instance.getPlayerByID(GameManager.Instance.localPlayer).addCardToHand(cardLogic);
         }
     }
 
@@ -121,7 +132,7 @@ public class Player : MonoBehaviour, ICharacter
     // it is cnvenient to call this method from visual part
 
         //TODO: Make this work for card spaces
-    public void PlayASpellFromHand(int SpellCardUniqueID, int TargetUniqueID)
+    /*public void PlayASpellFromHand(int SpellCardUniqueID, int TargetUniqueID)
     {
         if (TargetUniqueID < 0)
             PlayASpellFromHand(CardLogic.CardsCreatedThisGame[SpellCardUniqueID], null);
@@ -136,7 +147,7 @@ public class Player : MonoBehaviour, ICharacter
         {
             Debug.Log("Found something we didn't expect in PlayASpellFromHand, whoops!");
         }      
-    }
+    }*/
 
     // 2nd overload - takes CardLogic and ICharacter interface - 
     // this method is called from Logic, for example by AI
@@ -153,7 +164,8 @@ public class Player : MonoBehaviour, ICharacter
         // no matter what happens, move this card to PlayACardSpot
         new PlayASpellCardCommand(this, playedCard).AddToQueue();
         // remove this card from hand
-        hand.CardsInHand.Remove(playedCard);
+        hand.removeCard(playedCard);
+        GameManager.Instance.getPlayerByID(GameManager.Instance.localPlayer).removeCardFromHand(playedCard);
         // check if this is a creature or a spell
     }
 
@@ -166,10 +178,11 @@ public class Player : MonoBehaviour, ICharacter
     {
         table.PlaceCardAt(tablePos, playedCard);
         new PlayAnItemCommand(playedCard, this, tablePos, playedCard.UniqueCardID).AddToQueue();
-        hand.CardsInHand.Remove(playedCard);
+        hand.removeCard(playedCard);
+        GameManager.Instance.getPlayerByID(GameManager.Instance.localPlayer).removeCardFromHand(playedCard);
     }
 
-    public void Die()
+   /* public void Die()
     {
         // game over
         // block both players from taking new moves 
@@ -177,7 +190,7 @@ public class Player : MonoBehaviour, ICharacter
         otherPlayer.PArea.ControlsON = false;
         TurnManager.Instance.StopTheTimer();
         new GameOverCommand(this).AddToQueue();
-    }
+    }*/
 
      // START GAME METHODS
     public void LoadCharacterInfoFromAsset()

@@ -6,7 +6,7 @@ public class NetworkPlayer
 {
     public CharacterAsset avatar;
     public string nickname;
-    public List<CardLogic> hand;
+    public Hand hand;
     public List<CardLogic> cardsPlayed;
     public int coins;
 
@@ -16,18 +16,21 @@ public class NetworkPlayer
 
     public NetworkPlayer()
     {
-
+        hand = new Hand();
     }
 
-    // Start is called before the first frame update
-    void Start()
+    public void addCardToHand(CardLogic card)
     {
-        
+        hand.addCard(card);
     }
 
-    // Update is called once per frame
-    void Update()
+    public void removeCardFromHand(CardLogic card)
     {
-        
+        hand.removeCard(card);
+    }
+
+    public int cardsInHand()
+    {
+        return hand.cardCount();
     }
 }

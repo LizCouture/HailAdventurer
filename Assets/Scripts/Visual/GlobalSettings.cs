@@ -13,10 +13,10 @@ public class GlobalSettings: MonoBehaviour
     //public Color32 CardRibbonsStandardColor;
     //public Color32 CardGlowColor;
     [Header("Numbers and Values")]
-    public float CardPreviewTime = 1f;
-    public float CardTransitionTime= 1f;
-    public float CardPreviewTimeFast = 0.2f;
-    public float CardTransitionTimeFast = 0.5f;
+    public float CardPreviewTime = 0.05f;
+    public float CardTransitionTime= 0.1f;
+    public float CardPreviewTimeFast = 0.025f;
+    public float CardTransitionTimeFast = 0.05f;
     [Header("Prefabs and Assets")]
     public GameObject ItemCardPrefab;
     public GameObject AdventurerCardPrefab;
@@ -46,14 +46,18 @@ public class GlobalSettings: MonoBehaviour
 
     public bool CanControlThisPlayer(AreaPosition owner)
     {
-        bool PlayersTurn = (TurnManager.Instance.whoseTurn == Players[owner]);
+        // TODO: This might need to change to reflect Event, or be removed
+        // bool PlayersTurn = (TurnManager.Instance.whoseTurn == Players[owner]);
+        bool PlayersTurn = true;
         bool NotDrawingAnyCards = !Command.CardDrawPending();
         return Players[owner].PArea.AllowedToControlThisPlayer && Players[owner].PArea.ControlsON && PlayersTurn && NotDrawingAnyCards;
     }
 
     public bool CanControlThisPlayer(Player ownerPlayer)
     {
-        bool PlayersTurn = (TurnManager.Instance.whoseTurn == ownerPlayer);
+        // TODO: This might need to change to reflect Event, or be removed
+        //bool PlayersTurn = (TurnManager.Instance.whoseTurn == ownerPlayer);
+        bool PlayersTurn = true;
         bool NotDrawingAnyCards = !Command.CardDrawPending();
         return ownerPlayer.PArea.AllowedToControlThisPlayer && ownerPlayer.PArea.ControlsON && PlayersTurn && NotDrawingAnyCards;
     }

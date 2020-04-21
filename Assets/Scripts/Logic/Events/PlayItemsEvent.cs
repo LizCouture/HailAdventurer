@@ -15,7 +15,17 @@ public class PlayItemsEvent : GameEvent
     public override void onStart()
     {
         Debug.Log("Playing items begins!");
-        base.onStart();
+        GameManager gm = GameManager.Instance;
+        Player p = Player.Instance;
+        while(gm.getPlayerByID(gm.localPlayer).cardsInHand() < gm.HANDLIMIT)
+        {
+            Debug.Log("Drawing a card");
+            p.DrawACard();
+            //TODO: Deal Card To Player
+        }
+        // START 30 SECOND TIMER
+
+
     }
 
     public override void onEnd()

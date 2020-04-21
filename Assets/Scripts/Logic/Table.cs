@@ -52,7 +52,7 @@ public class Table : MonoBehaviour
         CardLogic cl;
         if(p == null)
         {
-            p = Player.Players[0];
+            p = Player.Instance;
         }
         if (index == 0)
         {

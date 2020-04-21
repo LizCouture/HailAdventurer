@@ -4,7 +4,7 @@ using System.Collections;
 //this class will take all decisions for AI. 
 
 public class AITurnMaker: TurnMaker {
-
+/*
     public override void OnTurnStart()
     {
         base.OnTurnStart();
@@ -71,6 +71,9 @@ public class AITurnMaker: TurnMaker {
             }
             //Debug.Log("Card: " + c.ca.name + " can NOT be played");
         }
+        return false;*/
+        /*
+        Debug.Log("WE TURNED THIS OFF SORRY");
         return false;
     }
 
@@ -109,11 +112,10 @@ public class AITurnMaker: TurnMaker {
             }
         }
         return false;
-    }*/
-
+    }
     void InsertDelay(float delay)
     {
         new DelayCommand(delay).AddToQueue();
-    }
+    }*/
 
 }

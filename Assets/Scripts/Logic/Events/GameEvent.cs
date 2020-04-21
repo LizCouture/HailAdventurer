@@ -49,7 +49,9 @@ public class GameEvent
      */
     public virtual void onStart()
     {
-        Task.Delay(500).ContinueWith(t=> onEnd());
+        Debug.Log("task not implemented yet");
+        onEnd();
+        //Task.Delay(500).ContinueWith(t=> onEnd());
     }
 
     /*

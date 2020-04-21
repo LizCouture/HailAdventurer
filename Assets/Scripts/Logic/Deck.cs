@@ -2,13 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 
-public class Deck : MonoBehaviour {
+public class Deck{
 
     private List<CardAsset> cards;
 
 
     public Deck()
     {
+        Debug.Log("Creating Deck empty");
         cards = new List<CardAsset>();
     }
 
@@ -43,6 +44,15 @@ public class Deck : MonoBehaviour {
     public void Shuffle()
     {
         cards.Shuffle();
+    }
+
+    public override string ToString()
+    {
+        string deckstring = "";
+        foreach (CardAsset card in cards){
+            deckstring += card.CardImage.name;
+        }
+        return deckstring;
     }
 	
 }

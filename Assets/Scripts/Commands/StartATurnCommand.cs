@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class StartATurnCommand : Command {
-
+/*
     private Player p;
 
     public StartATurnCommand(Player p)
@@ -15,5 +15,5 @@ public class StartATurnCommand : Command {
         TurnManager.Instance.whoseTurn = p;
         // this command is completed instantly
         CommandExecutionComplete();
-    }
+    }*/
 }

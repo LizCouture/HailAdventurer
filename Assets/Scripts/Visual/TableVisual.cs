@@ -7,6 +7,7 @@ public class TableVisual : MonoBehaviour
 {
     // PUBLIC FIELDS
 
+        //TODO: There's only one Table.  THE TABLE.
     // an enum that mark to whish caracter this table belongs. The alues are - Top or Low
     public AreaPosition owner;
     public Player ownerPlayer;
@@ -62,11 +63,12 @@ public class TableVisual : MonoBehaviour
         col = GetComponent<BoxCollider>();
         rightSlotCol = rightSlot.GetComponent<BoxCollider>();
         leftSlotCol = leftSlot.GetComponent<BoxCollider>();
-        if (owner == AreaPosition.Top) { ownerPlayer = Player.Players[0]; }
+        /*if (owner == AreaPosition.Top) { ownerPlayer = Player.Players[0]; }
         else if (Player.Players.Length > 1)
         {
             ownerPlayer = Player.Players[1];
-        }
+        }*/
+        ownerPlayer = Player.Instance;
     }
 
     // CURSOR/MOUSE DETECTION

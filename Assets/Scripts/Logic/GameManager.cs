@@ -16,16 +16,14 @@ public class GameManager : MonoBehaviour
     public AvatarManager avatarManager;
     private GameTimeline timeline;
 
-    [SerializeField]
-    private Deck adventurerDeck;
-    [SerializeField]
-    private Deck adventurerDiscard;
-    [SerializeField]
-    private Deck itemDeck;
-    [SerializeField]
-    private Deck itemDiscard;
+    public Deck adventurerDeck;
+    public Deck adventurerDiscard;
+    public Deck itemDeck;
+    public Deck itemDiscard;
 
-    public CardAsset currentAdventurerCard;
+    public CardLogic currentAdventurerCard;
+
+    public int HANDLIMIT = 8;
 
 
     // Start is called before the first frame update
@@ -33,6 +31,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         Players = new List<NetworkPlayer>();
+        currentAdventurerCard = null;
         DontDestroyOnLoad(gameObject);
     }
 
@@ -43,10 +42,18 @@ public class GameManager : MonoBehaviour
         Debug.Log("Players.Count: " + Players.Count);
         localPlayer = addPlayer(new NetworkPlayer());
 
+        Debug.Log("creating decks");
         adventurerDiscard = new Deck();
         itemDiscard = new Deck();
         adventurerDeck = new Deck("SO Assets/Cards/Adventurers");
+        itemDeck = new Deck("SO Assets/Cards/Items");
+
+        adventurerDeck.Shuffle();
+        itemDeck.Shuffle();
+
         currentAdventurerCard = null;
+        Debug.Log("adventurerDiscard " + adventurerDiscard.ToString());
+        Debug.Log("adventurerDeck: " + adventurerDeck.ToString());
 
         avatarManager.ShuffleDictionary();
         lobbyManager.initializeLobby();
@@ -157,9 +164,19 @@ public class GameManager : MonoBehaviour
 
     public void dealNewAdventurer()
     {
-        if (currentAdventurerCard != null)
+        if (currentAdventurerCard != null && currentAdventurerCard.ca != null)
         {
-            adventurerDiscard.returnToDeck(currentAdventurerCard);
+            Debug.Log("dealNewAdventurer adventurerDiscard: " + adventurerDiscard.ToString());
+            Debug.Log("currentAdventurer: " + currentAdventurerCard.ToString());
+            Debug.Log("currentAdventurer.ca : " + currentAdventurerCard.ca.ToString());
+            adventurerDiscard.returnToDeck(currentAdventurerCard.ca);
         }
+
+        currentAdventurerCard = adventurerDeck.DealCard();
+    }
+
+    public Deck ItemDeck()
+    {
+        return itemDeck;
     }
 }

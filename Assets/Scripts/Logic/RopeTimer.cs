@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
 using TMPro;
+using JetBrains.Annotations;
 
 public class RopeTimer : MonoBehaviour, IEventSystemHandler
 {
@@ -22,12 +23,24 @@ public class RopeTimer : MonoBehaviour, IEventSystemHandler
 
     void Awake()
     {
+        initializeTimer();
+    }
+
+    private void initializeTimer()
+    {
         if (RopeGameObject != null)
         {
             RopeSlider.minValue = 0;
             RopeSlider.maxValue = RopeBurnTime;
             RopeGameObject.SetActive(false);
         }
+    }
+
+    public void SetTimer(float duration)
+    {
+        TimeForOneTurn = duration;
+        RopeBurnTime = duration - (duration / 3.0f);
+        initializeTimer();
     }
 
     public void StartTimer()

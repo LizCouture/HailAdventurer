@@ -16,6 +16,11 @@ public class CardLogic: IIdentifiable
     //public SpellEffect effect;
 
 
+    public override String ToString()
+    {
+        return "Card: " + ca.ToString() + "owned by " + owner + " ID: " + UniqueCardID;
+    }
+
     // STATIC (for managing IDs)
     public static Dictionary<int, CardLogic> CardsCreatedThisGame = new Dictionary<int, CardLogic>();
 

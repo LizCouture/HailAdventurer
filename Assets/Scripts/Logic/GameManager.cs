@@ -179,4 +179,9 @@ public class GameManager : MonoBehaviour
     {
         return itemDeck;
     }
+
+    public void DiscardItem(CardLogic item)
+    {
+        itemDiscard.returnToDeck(item.ca);
+    }
 }

@@ -33,4 +33,37 @@ public class NetworkPlayer
     {
         return hand.cardCount();
     }
+
+    public List<CardLogic> CardsPlayed()
+    {
+        return cardsPlayed;
+    }
+
+    public void PlayCards(List<CardLogic> newCards)
+    {
+        if (newCards.Count != 2)
+        {
+            Debug.LogError("ERROR:  NetworkPlayer tried to PlayCards with " + newCards.Count + " cards");
+            //TODO:  Make this fix the problem.
+        } else
+        {
+            if (cardsPlayed.Count > 0)
+            {
+                foreach(CardLogic card in cardsPlayed)
+                {
+                    GameManager.Instance.DiscardItem(card);
+                    Debug.Log("Discarding Card: " + card.ToString());
+                    cardsPlayed.Remove(card);
+                }
+                foreach(CardLogic card in newCards)
+                {
+                    cardsPlayed.Add(card);
+                }
+                if (cardsPlayed.Count != 2)
+                {
+                    Debug.LogError("ERROR:  After PlayCards, list of cardsPlayed.Count = " + cardsPlayed.Count);
+                }
+            }
+        }
+    }
 }

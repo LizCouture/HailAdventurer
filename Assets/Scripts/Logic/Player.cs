@@ -131,44 +131,6 @@ public class Player : MonoBehaviour
     // 1st overload - takes ids as arguments
     // it is cnvenient to call this method from visual part
 
-        //TODO: Make this work for card spaces
-    /*public void PlayASpellFromHand(int SpellCardUniqueID, int TargetUniqueID)
-    {
-        if (TargetUniqueID < 0)
-            PlayASpellFromHand(CardLogic.CardsCreatedThisGame[SpellCardUniqueID], null);
-        else if (TargetUniqueID == ID)
-        {
-            PlayASpellFromHand(CardLogic.CardsCreatedThisGame[SpellCardUniqueID], this);
-        }
-        else if (TargetUniqueID == otherPlayer.ID)
-        {
-            PlayASpellFromHand(CardLogic.CardsCreatedThisGame[SpellCardUniqueID], this.otherPlayer);
-        } else
-        {
-            Debug.Log("Found something we didn't expect in PlayASpellFromHand, whoops!");
-        }      
-    }*/
-
-    // 2nd overload - takes CardLogic and ICharacter interface - 
-    // this method is called from Logic, for example by AI
-    public void PlayASpellFromHand(CardLogic playedCard, ICharacter target)
-    {
-        //ManaLeft -= playedCard.CurrentManaCost;
-        // cause effect instantly:
-       /* if (playedCard.effect != null)
-            playedCard.effect.ActivateEffect(playedCard.ca.specialSpellAmount, target);
-        else
-        {
-            Debug.LogWarning("No effect found on card " + playedCard.ca.name);
-        }*/
-        // no matter what happens, move this card to PlayACardSpot
-        new PlayASpellCardCommand(this, playedCard).AddToQueue();
-        // remove this card from hand
-        hand.removeCard(playedCard);
-        GameManager.Instance.getPlayerByID(GameManager.Instance.localPlayer).removeCardFromHand(playedCard);
-        // check if this is a creature or a spell
-    }
-
     public void PlayItemFromHand(int UniqueID, int tablePos)
     {
         PlayItemFromHand(CardLogic.CardsCreatedThisGame[UniqueID], tablePos);
@@ -182,16 +144,6 @@ public class Player : MonoBehaviour
         GameManager.Instance.getPlayerByID(GameManager.Instance.localPlayer).removeCardFromHand(playedCard);
     }
 
-   /* public void Die()
-    {
-        // game over
-        // block both players from taking new moves 
-        PArea.ControlsON = false;
-        otherPlayer.PArea.ControlsON = false;
-        TurnManager.Instance.StopTheTimer();
-        new GameOverCommand(this).AddToQueue();
-    }*/
-
      // START GAME METHODS
     public void LoadCharacterInfoFromAsset()
     {
@@ -199,15 +151,6 @@ public class Player : MonoBehaviour
         // change the visuals for portrait, hero power, etc...
         PArea.Portrait.charAsset = charAsset;
         PArea.Portrait.ApplyLookFromAsset();
-
-      /*  if (charAsset.HeroPowerName != null && charAsset.HeroPowerName != "")
-        {
-            HeroPowerEffect = System.Activator.CreateInstance(System.Type.GetType(charAsset.HeroPowerName)) as SpellEffect;
-        }
-        else
-        {
-            Debug.LogWarning("Check hero powr name for character " + charAsset.ClassName);
-        }*/
     }
 
     public void TransmitInfoAboutPlayerToVisual()

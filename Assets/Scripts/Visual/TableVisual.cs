@@ -16,11 +16,12 @@ public class TableVisual : MonoBehaviour
     public SameDistanceChildren slots;
     public GameObject leftSlot;
     public GameObject rightSlot;
+    public Transform deckPosition;
 
     // PRIVATE FIELDS
 
-   // list of the cards in those slots
-   [SerializeField]
+    // list of the cards in those slots
+    [SerializeField]
     private GameObject leftCardOnTable = null;
     [SerializeField]
     private GameObject rightCardOnTable = null;

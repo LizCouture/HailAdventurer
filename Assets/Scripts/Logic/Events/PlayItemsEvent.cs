@@ -23,7 +23,7 @@ public class PlayItemsEvent : GameEvent
             p.DrawACard();
             //TODO: Deal Card To Player
         }
-        // START 30 SECOND TIMER
+        PlayItemsManager.Instance.setupPlayItemsScene();
 
 
     }

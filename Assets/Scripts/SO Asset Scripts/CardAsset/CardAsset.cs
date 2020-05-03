@@ -17,6 +17,11 @@ public class CardAsset : ScriptableObject
     [Header("Adventurer Info")]
     public string AdventurerScriptName;
 
+    public override string ToString()
+    {
+        return CardImage.name;
+    }
+
 
 
 }

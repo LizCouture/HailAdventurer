@@ -14,9 +14,9 @@ public class GlobalSettings: MonoBehaviour
     //public Color32 CardGlowColor;
     [Header("Numbers and Values")]
     public float CardPreviewTime = 0.05f;
-    public float CardTransitionTime= 0.1f;
+    public float CardTransitionTime= 0.01f;
     public float CardPreviewTimeFast = 0.025f;
-    public float CardTransitionTimeFast = 0.05f;
+    public float CardTransitionTimeFast = 0.005f;
     [Header("Prefabs and Assets")]
     public GameObject ItemCardPrefab;
     public GameObject AdventurerCardPrefab;

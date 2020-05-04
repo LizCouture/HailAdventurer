@@ -25,12 +25,12 @@ public class PlayItemsEvent : GameEvent
         }
         PlayItemsManager.Instance.setupPlayItemsScene();
 
-
     }
 
     public override void onEnd()
     {
         Debug.Log("Playing items ends!");
+        PlayItemsManager.Instance.cleanUp();
         base.onEnd();
     }
 }

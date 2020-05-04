@@ -17,6 +17,7 @@ public class NetworkPlayer
     public NetworkPlayer()
     {
         hand = new Hand();
+        cardsPlayed = new List<CardLogic>();
     }
 
     public void addCardToHand(CardLogic card)
@@ -47,22 +48,22 @@ public class NetworkPlayer
             //TODO:  Make this fix the problem.
         } else
         {
-            if (cardsPlayed.Count > 0)
+            if (cardsPlayed != null && cardsPlayed.Count > 0)
             {
-                foreach(CardLogic card in cardsPlayed)
+                foreach (CardLogic card in cardsPlayed)
                 {
                     GameManager.Instance.DiscardItem(card);
                     Debug.Log("Discarding Card: " + card.ToString());
                     cardsPlayed.Remove(card);
                 }
-                foreach(CardLogic card in newCards)
-                {
-                    cardsPlayed.Add(card);
-                }
-                if (cardsPlayed.Count != 2)
-                {
-                    Debug.LogError("ERROR:  After PlayCards, list of cardsPlayed.Count = " + cardsPlayed.Count);
-                }
+            }
+            foreach(CardLogic card in newCards)
+            {
+                cardsPlayed.Add(card);
+            }
+            if (cardsPlayed.Count != 2)
+            {
+                Debug.LogError("ERROR:  After PlayCards, list of cardsPlayed.Count = " + cardsPlayed.Count);
             }
         }
     }

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     private List<NetworkPlayer> Players;
 
     public int localPlayer;
+    public int currentAdventurer;
 
     public LobbyManager lobbyManager;
     public AvatarManager avatarManager;
@@ -31,6 +32,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         Players = new List<NetworkPlayer>();
+        currentAdventurer = 0;
         currentAdventurerCard = null;
         DontDestroyOnLoad(gameObject);
     }
@@ -161,6 +163,12 @@ public class GameManager : MonoBehaviour
         Debug.Log("GameManager: endCurrentEvent");
         timeline.endCurrentEvent();
     }
+    public IEnumerator endCurrentEventAfterDuration(float duration)
+    {
+        yield return new WaitForSeconds(duration);
+
+        endCurrentEvent();
+    }
 
     public void dealNewAdventurer()
     {
@@ -183,5 +191,20 @@ public class GameManager : MonoBehaviour
     public void DiscardItem(CardLogic item)
     {
         itemDiscard.returnToDeck(item.ca);
+    }
+
+    public void playItemsForAI()
+    {
+        for(int i = 0; i < Players.Count; i++)
+        {
+            if (Players[i].isAI && (i != currentAdventurer))
+            {
+                List<CardLogic> cardsToPlay = new List<CardLogic>();
+                for (int j = 0; j < 2; j++)
+                {
+                    cardsToPlay.Add(itemDeck.DealCard());
+                }
+            }
+        }
     }
 }

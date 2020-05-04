@@ -17,6 +17,7 @@ public class AdventurerAnnouncementEvent : GameEvent
     public override void onStart()
     {
         GameManager gm = GameManager.Instance;
+        gm.currentAdventurer = playerIndex;
         Debug.Log("Player " + gm.getPlayerByID(playerIndex).nickname + " is coming to town!");
 
         // Draw an adventure card, and display it.

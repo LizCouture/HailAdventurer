@@ -145,10 +145,6 @@ public class TableVisual : MonoBehaviour
             id.UniqueID = UniqueID;
         }
 
-        // after a new creature is added update placing of all the other creatures
-        //ShiftSlotsGameObjectAccordingToNumberOfCards();
-        //PlaceCardsOnNewSlots();
-
         // end command execution
         Command.CommandExecutionComplete();
     }
@@ -187,15 +183,7 @@ public class TableVisual : MonoBehaviour
     // Destroy a creature
     public void RemoveCardWithID(int IDToRemove)
     {
-        // TODO: This has to last for some time
-        // Adding delay here did not work because it shows one creature die, then another creature die. 
-        // 
-        //Sequence s = DOTween.Sequence();
-        //s.AppendInterval(1f);
-        //s.OnComplete(() =>
-        //   {
-                
-        //    });
+
         GameObject creatureToRemove = IDHolder.GetGameObjectWithID(IDToRemove);
         //CardsOnTable.Remove(creatureToRemove);
         if (leftCardOnTable == creatureToRemove) leftCardOnTable = null;
@@ -229,33 +217,14 @@ public class TableVisual : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Shifts the slots game object according to number of creatures.
-    /// </summary>
-   /* void ShiftSlotsGameObjectAccordingToNumberOfCards()
+    // Card discarding is handled by the event, this is just handling the table.
+    public void CleanUpSlots()
     {
-        float posX;
-        if (CardsOnTable.Count > 0)
-            posX = (slots.Children[0].transform.localPosition.x - slots.Children[CardsOnTable.Count - 1].transform.localPosition.x) / 2f;
-        else
-            posX = 0f;
-
-        slots.gameObject.transform.DOLocalMoveX(posX, 0.3f);  
-    }*/
-
-    /// <summary>
-    /// After a new creature is added or an old creature dies, this method
-    /// shifts all the creatures and places the creatures on new slots.
-    /// </summary>
-   /* void PlaceCardsOnNewSlots()
-    {
-        foreach (GameObject g in CardsOnTable)
-        {
-            g.transform.DOLocalMoveX(slots.Children[CardsOnTable.IndexOf(g)].transform.localPosition.x, 0.3f);
-            // apply correct sorting order and HandSlot value for later 
-            // TODO: figure out if I need to do something here:
-            // g.GetComponent<WhereIsTheCardOrCreature>().SetTableSortingOrder() = CreaturesOnTable.IndexOf(g);
-        }
-    }*/
-
+        Table.Instance.SlotLeft = null;
+        Table.Instance.SlotRight = null;
+        Destroy(leftCardOnTable);
+        Destroy(rightCardOnTable);
+        leftCardOnTable = null;
+        rightCardOnTable = null;
+    }
 }

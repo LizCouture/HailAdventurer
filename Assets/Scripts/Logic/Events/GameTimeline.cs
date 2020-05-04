@@ -62,7 +62,8 @@ public class GameTimeline
             tl.Enqueue(new RoundAnnouncementEvent(true, i, ROUND_ANNOUNCEMENT_DURATION));
             // TODO:  Shuffle order of players maybe?
             // Each player gets a chance to be the adventurer every round.
-            for (int j = 0; j < GameManager.Instance.playerCount(); j++)
+            // Put this in reverse order for testing so I don'th ave to be the adventurer.
+            for (int j = GameManager.Instance.playerCount() - 1; j >= 0 ; j--)
             {
                 tl.Enqueue(new AdventurerAnnouncementEvent(true, j, ADVENTURER_ANNOUNCEMENT_DURATION));
                 tl.Enqueue(new PlayItemsEvent(true, PLAY_ITEMS_DURATION));

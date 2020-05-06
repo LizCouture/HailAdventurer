@@ -42,6 +42,7 @@ public class NetworkPlayer
 
     public void PlayCards(List<CardLogic> newCards)
     {
+        Debug.Log("in PlayCards.");
         if (newCards.Count != 2)
         {
             Debug.LogError("ERROR:  NetworkPlayer tried to PlayCards with " + newCards.Count + " cards");

@@ -88,15 +88,15 @@ public class GameTimeline
 
     public void nextInQueue()
     {
-        Debug.Log("GameTimeline.nextInQueue");
         playingTimeline = true;
         currentEvent = timeline.Dequeue();
+        Debug.Log("TIMELINE CURRENT EVENT START: " + currentEvent.ToString());
         currentEvent.onStart();
     }
 
     public void endCurrentEvent()
     {
-        Debug.Log("timeline end current event");
+        Debug.Log("TIMELINE CURRENT EVENT END: " + currentEvent.ToString());
         currentEvent.onEnd();
     }
 

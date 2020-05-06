@@ -10,17 +10,23 @@ public class SellItemsEvent : GameEvent
         this.type = TimelineEventType.SellItems;
         this.timed = timed;
         this.duration = duration;
+        this.playerIndex = playerIndex;
     }
 
     public override void onStart()
     {
-        Debug.Log("Playing items begins!");
-        base.onStart();
+        GameManager gm = GameManager.Instance;
+        gm.currentSalesman = playerIndex;
+        Debug.Log("Player " + gm.getPlayerByID(playerIndex).nickname + " is selling items!");
+
+        // Draw an adventure card, and display it.
+        //base.onStart();
+        SellItemsManager.Instance.startSelling(playerIndex);
     }
 
     public override void onEnd()
     {
-        Debug.Log("Playing items ends!");
+        SellItemsManager.Instance.endAnnouncement();
         base.onEnd();
     }
 }

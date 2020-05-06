@@ -41,6 +41,7 @@ public class PlayItemsManager : MonoBehaviour
         Table t = Table.Instance;
         if(t.SlotLeft == null)
         {
+            Debug.Log("t.SlotLeft == null");
             Slot leftSlot = TableVisual.Instance.leftSlot.GetComponent<Slot>();
             CardLogic newCard = GameManager.Instance.itemDeck.DealCard();
             new PlayItemFromDeckCommand(newCard, Player.Instance, true, leftSlot).AddToQueue();
@@ -48,6 +49,7 @@ public class PlayItemsManager : MonoBehaviour
         }
         if(t.SlotRight == null)
         {
+            Debug.Log("t.SlotRight == null");
             Slot rightSlot = TableVisual.Instance.rightSlot.GetComponent<Slot>();
             CardLogic newCard = GameManager.Instance.itemDeck.DealCard();
             new PlayItemFromDeckCommand(newCard, Player.Instance, true, rightSlot).AddToQueue();

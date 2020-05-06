@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
 
     public int localPlayer;
     public int currentAdventurer;
+    public int currentSalesman;
 
     public LobbyManager lobbyManager;
     public AvatarManager avatarManager;
@@ -150,7 +151,7 @@ public class GameManager : MonoBehaviour
         {
             timeline.nextInQueue();
         }
-        else Debug.Log("Que complete");
+        else Debug.Log("Queue complete");
     }
 
     public GameEvent currentEvent()
@@ -165,8 +166,9 @@ public class GameManager : MonoBehaviour
     }
     public IEnumerator endCurrentEventAfterDuration(float duration)
     {
+        Debug.Log("end current event after duration...");
         yield return new WaitForSeconds(duration);
-
+        Debug.Log("Ending Current Event.");
         endCurrentEvent();
     }
 

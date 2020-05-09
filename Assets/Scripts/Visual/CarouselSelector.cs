@@ -1,9 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.UI;
-using TMPro;
-using Doozy.Engine.Progress;
+using DG.Tweening;
 
 public class CarouselSelector : MonoBehaviour
 {
@@ -19,6 +16,8 @@ public class CarouselSelector : MonoBehaviour
     private Vector3 centerpointStart;
 
     private const float ZOOM_LEVEL = 3.5f;
+    private const float MOVE_TIME = 0.2f;
+
 
     // Start is called before the first frame update
     void Awake()
@@ -42,8 +41,10 @@ public class CarouselSelector : MonoBehaviour
 
     private void centerCarouselOnIndex(int index)
     {
-        Items[index].position = centerpointStart;
-        if(index > 0)
+        Sequence s = DOTween.Sequence();
+        s.Append(Items[index].DOMove(centerpointStart, MOVE_TIME));
+        //Items[index].position = centerpointStart;
+        if (index > 0)
         {
             distributeEvenlyBetweenPoints(leftmostItemStart, centerpointStart, 0, index);
         }
@@ -56,16 +57,17 @@ public class CarouselSelector : MonoBehaviour
     
     void distributeEvenlyBetweenPoints(Vector3 left, Vector3 right, int firstItem, int lastItem)
     {
+        Sequence s = DOTween.Sequence();
         float XDist = (right.x - left.x) / (float)(lastItem - firstItem);
         float YDist = (right.y - left.y) / (float)(lastItem - firstItem);
         float ZDist = (right.z - left.z) / (float)(lastItem - firstItem);
 
         Vector3 Dist = new Vector3(XDist, YDist, ZDist);
 
-        Items[firstItem].position = left;
-        for (int i = firstItem+1; i <= lastItem; i++)
+        //s.Append(Items[firstItem].DOMove(left, MOVE_TIME));
+        for (int i = 0; i < lastItem - firstItem; i++)
         {
-            Items[i].position = Items[i - 1].position + Dist;
+            s.Append(Items[firstItem + i].DOMove(left + (Dist * i), MOVE_TIME));
         }
     }
 

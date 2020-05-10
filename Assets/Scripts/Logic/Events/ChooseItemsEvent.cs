@@ -16,13 +16,14 @@ public class ChooseItemsEvent : GameEvent
 
     public override void onStart()
     {
-        base.onStart();
         Debug.Log(GameManager.Instance.getPlayerByID(playerIndex).nickname + " will pick her favorite!");
+        ChooseItemsManager.Instance.StartChoosing();
     }
 
     public override void onEnd()
     {
-        Debug.Log("Playing items ends!");
+        ChooseItemsManager.Instance.CleanUp();
         base.onEnd();
     }
+
 }

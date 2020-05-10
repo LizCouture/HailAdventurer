@@ -40,6 +40,11 @@ public class NetworkPlayer
         return cardsPlayed;
     }
 
+    public void giveCoin()
+    {
+        coins++;
+    }
+
     public void PlayCards(List<CardLogic> newCards)
     {
         Debug.Log("in PlayCards.");

@@ -27,6 +27,8 @@ public class GameManager : MonoBehaviour
 
     public int HANDLIMIT = 8;
 
+    public NetworkPlayer lastRoundWinner;
+
 
     // Start is called before the first frame update
     void Start()
@@ -197,6 +199,7 @@ public class GameManager : MonoBehaviour
 
     public void playItemsForAI()
     {
+        Debug.Log("Playing Items for AI");
         for(int i = 0; i < Players.Count; i++)
         {
             if (Players[i].isAI && (i != currentAdventurer))
@@ -206,6 +209,7 @@ public class GameManager : MonoBehaviour
                 {
                     cardsToPlay.Add(itemDeck.DealCard());
                 }
+                Players[i].PlayCards(cardsToPlay);
             }
         }
     }

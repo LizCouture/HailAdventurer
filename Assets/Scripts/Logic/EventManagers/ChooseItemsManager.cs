@@ -98,22 +98,25 @@ public class ChooseItemsManager : MonoBehaviour
     // For now, we just want to make sure that it doesn't fire twice.
     public void LockItIn()
     {
+        Debug.Log("Lock It In.");
         hitBuyIt = true;
-        EndIt();
+        StartCoroutine( EndIt());
     }
 
     public void TimesUp()
     {
+        Debug.Log("TimesUp");
         if (!hitBuyIt)
         {
-            EndIt();
+            StartCoroutine( EndIt());
         }
     }
 
     public IEnumerator EndIt()
     {
+        Debug.Log("EndIt");
         winner = carousel.GetSelection();
-
+        populatePlayerList();
         yield return StartCoroutine(showAwardingCoins());
         StartCoroutine(GameManager.Instance.endCurrentEventAfterDuration(1.0f));
     }
@@ -128,8 +131,8 @@ public class ChooseItemsManager : MonoBehaviour
     {
         for (int i = 0; i < GameManager.Instance.playerCount(); i++)
         {
-            GameObject pi = Instantiate(PlayerInfoPrefab, PlayerPanel.transform.position, Quaternion.identity);
-            pi.transform.parent = PlayerPanel.transform;
+            GameObject pi = Instantiate(PlayerInfoPrefab);
+            pi.transform.SetParent(PlayerPanel.transform);
             PlayerInfoView infoView = pi.GetComponent<PlayerInfoView>();
             playerInfoSpots.Add(infoView);
             infoView.loadFromPlayer(GameManager.Instance.getPlayerByID(i));
@@ -138,16 +141,18 @@ public class ChooseItemsManager : MonoBehaviour
 
     public IEnumerator showAwardingCoins()
     {
+        Debug.Log("showAwardingCoins");
         Animator anim = PlayerPanel.GetComponent<Animator>();
         anim.SetInteger("numItems", GameManager.Instance.playerCount());
         anim.SetBool("open", true);
         yield return new WaitForSeconds(1);
         // Animate coin to player.
+        Debug.Log("playerInfoSpots: " + playerInfoSpots + " winner: " + winner);
         yield return StartCoroutine(playerInfoSpots[winner].giveCoin());
         // Increment player coin total
         GameManager.Instance.getPlayerByID(winner).giveCoin();
         // Wait a second
-
+        yield return new WaitForSeconds(3);
         // Close panel
         anim.SetBool("open", false);
 

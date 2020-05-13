@@ -14,8 +14,8 @@ public class PlayerInfoView : MonoBehaviour
     public GameObject coinPrefab;
     public Transform coinGivePosition;
 
-    public string Nickname;
-    public int Coins;
+    public string Nickname = "";
+    public int Coins = 0;
     public CharacterAsset ca;
 
     public void loadFromPlayer(NetworkPlayer np)

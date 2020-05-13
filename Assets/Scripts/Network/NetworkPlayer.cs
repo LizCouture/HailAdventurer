@@ -56,6 +56,7 @@ public class NetworkPlayer
         {
             if (cardsPlayed != null && cardsPlayed.Count > 0)
             {
+                // TODO: MAKE THIS A WHILE LOOP
                 foreach (CardLogic card in cardsPlayed)
                 {
                     GameManager.Instance.DiscardItem(card);

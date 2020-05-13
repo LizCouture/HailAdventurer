@@ -15,16 +15,22 @@ public class GameTimeline
                                                     {6, 1 },
                                                     {7, 1 },
                                                     {8, 1 } };
-    public const int ROUND_ANNOUNCEMENT_DURATION = 10;
-    public const int ADVENTURER_ANNOUNCEMENT_DURATION = 30;
-    public const int PLAY_ITEMS_DURATION = 30;
-    public const int SELL_ITEMS_DURATION = 60;
-    public const int CHOOSE_ITEMS_DURATION = 60;
-    public const int REPORT_WINNER_DURATION = 10;
+    public int ROUND_ANNOUNCEMENT_DURATION = 10;
+    public int ADVENTURER_ANNOUNCEMENT_DURATION = 30;
+    public int PLAY_ITEMS_DURATION = 30;
+    public int SELL_ITEMS_DURATION = 60;
+    public int CHOOSE_ITEMS_DURATION = 60;
+    public int REPORT_WINNER_DURATION = 10;
+
+    public bool DEV_MODE = true;
 
     private int numRounds;
     public GameTimeline(int numPlayers)
     {
+        if (DEV_MODE)
+        {
+            initializeRoundsToDevTime();
+        }
         playingTimeline = false;
         if (numPlayers < 3)
         {
@@ -33,6 +39,16 @@ public class GameTimeline
         }
         numRounds = roundsByPlayer[GameManager.Instance.playerCount()];
         timeline = generateTimeline(numPlayers);
+    }
+
+    private void initializeRoundsToDevTime()
+    {
+        ROUND_ANNOUNCEMENT_DURATION = 2;
+        ADVENTURER_ANNOUNCEMENT_DURATION = 5;
+        PLAY_ITEMS_DURATION = 30;
+        SELL_ITEMS_DURATION = 5;
+        CHOOSE_ITEMS_DURATION = 10;
+        REPORT_WINNER_DURATION = 10;
     }
 
     /*

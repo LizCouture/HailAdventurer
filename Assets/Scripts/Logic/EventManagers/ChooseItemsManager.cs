@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using UnityEditor.Profiling.Memory.Experimental;
 
 public class ChooseItemsManager : MonoBehaviour
 {
@@ -17,9 +18,14 @@ public class ChooseItemsManager : MonoBehaviour
 
     public List<NetworkPlayer> sellers;
     public NetworkPlayer buyer;
+    public int winner;
 
     private RopeTimer rt;
     private bool hitBuyIt;
+
+    public GameObject PlayerPanel;
+    public GameObject PlayerInfoPrefab;
+    public List<PlayerInfoView> playerInfoSpots;
 
     public static ChooseItemsManager Instance;
 
@@ -32,6 +38,7 @@ public class ChooseItemsManager : MonoBehaviour
         Items = new List<Transform>();
         rt = GetComponent<RopeTimer>();
         hitBuyIt = false;
+        playerInfoSpots = new List<PlayerInfoView>();
     }
 
     public void StartChoosing()
@@ -92,24 +99,57 @@ public class ChooseItemsManager : MonoBehaviour
     public void LockItIn()
     {
         hitBuyIt = true;
-        int winner = carousel.GetSelection();
-        sellers[winner].giveCoin();
-        StartCoroutine(GameManager.Instance.endCurrentEventAfterDuration(1.0f));
+        EndIt();
     }
 
     public void TimesUp()
     {
         if (!hitBuyIt)
         {
-            int winner = carousel.GetSelection();
-            sellers[winner].giveCoin();
-            StartCoroutine(GameManager.Instance.endCurrentEventAfterDuration(1.0f));
+            EndIt();
         }
+    }
+
+    public IEnumerator EndIt()
+    {
+        winner = carousel.GetSelection();
+
+        yield return StartCoroutine(showAwardingCoins());
+        StartCoroutine(GameManager.Instance.endCurrentEventAfterDuration(1.0f));
     }
 
     public void CleanUp()
     {
         sellers = new List<NetworkPlayer>();
         chooseItemsAnnouncement.SetActive(false);
+    }
+
+    public void populatePlayerList()
+    {
+        for (int i = 0; i < GameManager.Instance.playerCount(); i++)
+        {
+            GameObject pi = Instantiate(PlayerInfoPrefab, PlayerPanel.transform.position, Quaternion.identity);
+            pi.transform.parent = PlayerPanel.transform;
+            PlayerInfoView infoView = pi.GetComponent<PlayerInfoView>();
+            playerInfoSpots.Add(infoView);
+            infoView.loadFromPlayer(GameManager.Instance.getPlayerByID(i));
+        }
+    }
+
+    public IEnumerator showAwardingCoins()
+    {
+        Animator anim = PlayerPanel.GetComponent<Animator>();
+        anim.SetInteger("numItems", GameManager.Instance.playerCount());
+        anim.SetBool("open", true);
+        yield return new WaitForSeconds(1);
+        // Animate coin to player.
+        yield return StartCoroutine(playerInfoSpots[winner].giveCoin());
+        // Increment player coin total
+        GameManager.Instance.getPlayerByID(winner).giveCoin();
+        // Wait a second
+
+        // Close panel
+        anim.SetBool("open", false);
+
     }
 }

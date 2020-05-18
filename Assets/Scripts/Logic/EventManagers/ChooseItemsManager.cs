@@ -18,7 +18,7 @@ public class ChooseItemsManager : MonoBehaviour
 
     public List<NetworkPlayer> sellers;
     public NetworkPlayer buyer;
-    public int winner;
+    public NetworkPlayer winner;
 
     private RopeTimer rt;
     private bool hitBuyIt;
@@ -34,11 +34,7 @@ public class ChooseItemsManager : MonoBehaviour
     {
         Instance = this;
         chooseItemsAnnouncement.SetActive(false);
-        sellers = new List<NetworkPlayer>();
-        Items = new List<Transform>();
-        rt = GetComponent<RopeTimer>();
-        hitBuyIt = false;
-        playerInfoSpots = new List<PlayerInfoView>();
+        CleanUp();
     }
 
     public void StartChoosing()
@@ -115,7 +111,12 @@ public class ChooseItemsManager : MonoBehaviour
     public IEnumerator EndIt()
     {
         Debug.Log("EndIt");
-        winner = carousel.GetSelection();
+        int winningIndex = carousel.GetSelection();
+        Debug.Log("Winning Index: " + winningIndex);
+        PlayedItem winnerView = carousel.Items[winningIndex].GetComponent<PlayedItem>();
+        Debug.Log("WinnerView: " + winnerView);
+        winner = winnerView.np;
+        Debug.Log("winner: " + winner);
         populatePlayerList();
         yield return StartCoroutine(showAwardingCoins());
         StartCoroutine(GameManager.Instance.endCurrentEventAfterDuration(1.0f));
@@ -124,6 +125,18 @@ public class ChooseItemsManager : MonoBehaviour
     public void CleanUp()
     {
         sellers = new List<NetworkPlayer>();
+
+        Items = new List<Transform>();
+        rt = GetComponent<RopeTimer>();
+        hitBuyIt = false;
+        playerInfoSpots = new List<PlayerInfoView>();
+
+        foreach (Transform child in PlayerPanel.transform) {
+            Destroy(child.gameObject);
+        }
+
+        carousel.cleanupCarousel();
+
         chooseItemsAnnouncement.SetActive(false);
     }
 
@@ -148,9 +161,14 @@ public class ChooseItemsManager : MonoBehaviour
         yield return new WaitForSeconds(1);
         // Animate coin to player.
         Debug.Log("playerInfoSpots: " + playerInfoSpots + " winner: " + winner);
-        yield return StartCoroutine(playerInfoSpots[winner].giveCoin());
-        // Increment player coin total
-        GameManager.Instance.getPlayerByID(winner).giveCoin();
+        for(int i = 0; i < playerInfoSpots.Count; i++)
+        {
+            if (winner == playerInfoSpots[i].np)
+            {
+                yield return StartCoroutine(playerInfoSpots[i].giveCoin());
+                winner.giveCoin();
+            }
+        }
         // Wait a second
         yield return new WaitForSeconds(3);
         // Close panel

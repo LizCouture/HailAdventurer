@@ -7,6 +7,7 @@ using DG.Tweening;
 
 public class PlayerInfoView : MonoBehaviour
 {
+    public NetworkPlayer np;
     public TextMeshProUGUI NicknameField;
     public TextMeshProUGUI CoinsField;
     public Image Avatar;
@@ -20,6 +21,7 @@ public class PlayerInfoView : MonoBehaviour
 
     public void loadFromPlayer(NetworkPlayer np)
     {
+        this.np = np;
         Nickname = np.nickname;
         Coins = np.coins;
         ca = np.avatar;

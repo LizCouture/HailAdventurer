@@ -75,6 +75,7 @@ public class SellItemsManager : MonoBehaviour
     public void endAnnouncement()
     {
         sellItemsAnnouncement.SetActive(false);
+       
     }
 
     private void populateFields(CharacterAsset ca, string na)

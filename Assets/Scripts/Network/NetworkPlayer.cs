@@ -56,9 +56,9 @@ public class NetworkPlayer
         {
             if (cardsPlayed != null && cardsPlayed.Count > 0)
             {
-                // TODO: MAKE THIS A WHILE LOOP
-                foreach (CardLogic card in cardsPlayed)
+                while (cardsPlayed.Count > 0)
                 {
+                    CardLogic card = cardsPlayed[0];
                     GameManager.Instance.DiscardItem(card);
                     Debug.Log("Discarding Card: " + card.ToString());
                     cardsPlayed.Remove(card);
@@ -73,5 +73,19 @@ public class NetworkPlayer
                 Debug.LogError("ERROR:  After PlayCards, list of cardsPlayed.Count = " + cardsPlayed.Count);
             }
         }
+    }
+
+    public override bool Equals(object obj)
+    {
+        if (obj == null)
+        {
+            return false;
+        }
+        NetworkPlayer other = obj as NetworkPlayer;
+        if (other.nickname == nickname && other.avatar == avatar)
+        {
+            return true;
+        }
+        return false;
     }
 }

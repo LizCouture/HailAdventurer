@@ -21,8 +21,11 @@ public class PlayedItem : MonoBehaviour
     public CharacterAsset avatarAsset;
     public Image avatarSprite;
 
+    public NetworkPlayer np;
+
     public void LoadFromNetworkPlayer(NetworkPlayer np)
     {
+        this.np = np;
         nickname = np.nickname;
         nicknameField.text = nickname;
 

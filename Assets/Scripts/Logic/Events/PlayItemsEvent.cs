@@ -31,6 +31,8 @@ public class PlayItemsEvent : GameEvent
     {
         Debug.Log("Playing items ends!");
         PlayItemsManager.Instance.cleanUp();
+        Debug.Log("clean up AdventurerAnnouncementManager.");
+        AdventurerAnnouncementManager.Instance.CleanUp();
         base.onEnd();
     }
 }

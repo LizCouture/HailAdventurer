@@ -128,6 +128,11 @@ public class AdventurerAnnouncementManager : MonoBehaviour
         largeAnnouncement.SetActive(false);
     }
 
+    public void CleanUp()
+    {
+        largeAnnouncement.SetActive(false);
+    }
+
     private void loadAdventurerCardsFromAsset(CardAsset ca)
     {
         OneCardManager smallManager = smallCard.GetComponent<OneCardManager>();

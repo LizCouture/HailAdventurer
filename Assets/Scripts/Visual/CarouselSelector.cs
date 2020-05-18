@@ -44,6 +44,15 @@ public class CarouselSelector : MonoBehaviour
         selectItem(0);
     }
 
+    public void cleanupCarousel()
+    {
+        while (Items.Count > 0)
+        {
+            Destroy(Items[0].gameObject);
+            Items.RemoveAt(0);
+        }
+    }
+
     private void selectItem(int index)
     {
         selectedIndex = index;
